@@ -1,20 +1,27 @@
 Textbox = Class {}
 
-function Textbox:init(def)
+function Textbox:init(text, def)
+  self.text = tostring(text) or '__empty___'
+
+  -- if def == nil then def = {} end
+
   self.panel = Panel(def)
-  self.x = def.x
-  self.y = def.y
-  self.width = def.width
-  self.height = def.height
+  self.x = def.x or 0
+  self.y = def.y or 0
+  self.width = def.width or VIRTUAL_WIDTH
+  self.height = def.height or 64
 
-  self.text = tostring(def.text) or '__empty___'
-  self.font = def.font or gFonts['small']
-
-  _, self.textChunks = self.font:getWrap(self.text, self.width)
-
-  self.textColor = def.textColor or {0, 0, 0, 1}
   self.paddingTop = def.paddingTop or 10
   self.paddingLeft = def.paddingLeft or 5
+
+  self.font = def.font or gFonts['small']
+  self.textColor = def.textColor or {0, 0, 0, 1}
+
+  _, self.textChunks = self.font:getWrap(self.text, self.width - 8)
+
+  local lineHeight = self.font:getHeight(self.textChunks[1])
+  self.lines = math.floor(((self.height - self.paddingTop * 2) / (lineHeight + self.paddingTop)))
+  -- print(self.width .. ' : ' .. #self.textChunks .. ' = ' .. self.lines)
 
   self.chunkCounter = 1
   self.endOfText = false
@@ -45,30 +52,31 @@ end
 function Textbox:nextChunks()
     local chunks = {}
 
-    for i = self.chunkCounter, self.chunkCounter + 2 do
+    -- print('before nextChunks_ ' ..self.chunkCounter)
+    for i = self.chunkCounter, self.chunkCounter + self.lines do
       table.insert(chunks, self.textChunks[i])
 
-      if i == # self.textChunks then
+      if i == #self.textChunks then
         self.endOfText = true
         return chunks
       end
     end
 
-    self.chunkCounter = self.chunkCounter + 3
-
+    self.chunkCounter = self.chunkCounter + self.lines + 1
+    -- print('after nextChunks_ ' ..self.chunkCounter .. '  lines: ' ..tostring(math.max(self.lines, 1)))
     return chunks
 end
 
 function Textbox:handleInput()
-  if love.keyboard.wasPressed('space') then
-    self:next()
+  if not self:isClosed() then
+    if love.keyboard.wasPressed('space') then
+      self:next()
+    end
   end
 end
 
 function Textbox:update(dt)
-  if not self:isClosed() then
     self:handleInput()
-  end
 end
 
 function Textbox:render()

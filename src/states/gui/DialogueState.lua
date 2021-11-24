@@ -1,23 +1,33 @@
 DialogueState = Class{__includes = BaseState}
 
-function DialogueState:init(text, canInput, onDialogueClose, def)
+function DialogueState:init(text, onDialogueClose, def)
+  if def == nil then
+    self.textbox = Textbox(text, {x = 0, y = VIRTUAL_HEIGHT - 64, width = VIRTUAL_WIDTH, height = 64})
+    self.canInput = true
 
-  self.textbox = Textbox({text = text, x = 0, y = VIRTUAL_HEIGHT - 64, width = VIRTUAL_WIDTH, height = 64})
+  else
+    if def.canInput == nil then self.canInput = true else self.canInput = def.canInput end
+    if def.y == nil then def.y = VIRTUAL_HEIGHT - 64 end
+    self.textbox = Textbox(text, def)
+    self.canInput = def.canInput
+  end
+
+
   self.onDialogueClose = onDialogueClose or function() print("__empty function__") end
-
-
-  if canInput == nil then self.canInput = true else self.canInput = canInput end
 end
 
 function DialogueState:handleInput()
   if self.canInput then
-    if love.keyboard.wasPressed('space') then
-      self.textbox:next()
-    end
-    if self.textbox:isClosed() then
-      gStateStack:pop()
-      self.onDialogueClose()
-    end
+        if love.keyboard.wasPressed('space') then
+          self.textbox:next()
+        end
+
+        if self.textbox:isClosed() then
+          self.textbox:toggle()
+          self.textbox.displayChunks = self.lastChunks
+          gStateStack:pop()
+          self.onDialogueClose()
+        end
   end
 end
 
@@ -32,10 +42,6 @@ function DialogueState:exit()
 end
 
 function DialogueState:update(dt)
-  if self.canInput then
-    self:handleInput()
-  end
-
   return not self.canInput
 end
 

@@ -1,6 +1,6 @@
 FadeOutState = Class {__includes = BaseState}
 
-function FadeOutState:init(color, time, onFadeComplete)
+function FadeOutState:init(color, time, onFadeComplete, contine)
   self.r = color[1]
   self.b = color[2]
   self.g = color[3]
@@ -9,6 +9,7 @@ function FadeOutState:init(color, time, onFadeComplete)
   self.alpha = 1
 
   self.time = time
+  if contine == nil then self.continue = false else self.contine = contine end
 
   Timer.tween(self.time, {
     [self] = {alpha = 0}
@@ -21,7 +22,7 @@ end
 
 
 function FadeOutState:update(dt)
-
+  return self.contine
 end
 
 function FadeOutState:render()

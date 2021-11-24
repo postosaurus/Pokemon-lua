@@ -7,7 +7,7 @@ function Selection:init(def)
 
   self.font = def.font or gFonts['small']
   self.textColor = def.textColor or {0, 0, 0, 1}
-  self.markerColor = def.markerColor or {1, 0, 0, 1}
+  self.markerColor = def.markerColor or {.5, .5, .5, 1}
   self.markerWidth = def.markerWidth or 2
 
   self.paddingTop = def.paddingTop or 10
@@ -17,8 +17,10 @@ function Selection:init(def)
   if def.align == nil then self.align = false else self.align = def.align or 'left' end
   if def.cursor == nil then self.cursor = true else self.cursor = def.cursor end
   if def.scrollBar == nil then self.scrollBar = false else self.scrollBar = def.scrollBar end
+  if def.closeOnSelect == nil then self.closeOnSelect = false else self.closeOnSelect = def.closeOnSelect end
 
   self.rows = def.rows or #self.items
+  print(#self.items)
   self.maxRows = def.maxRows or self.rows
   self.columns = def.columns or 1
   self.columnWidth = def.columnWidth or 50
@@ -46,7 +48,7 @@ function Selection:calcWidth()
     for k, item in ipairs(self.items) do
       maxItemWidth =  math.max(self.font:getWidth(item.text), maxItemWidth)
     end
-    print('maxItemWidth: ' .. maxItemWidth)
+    -- print('maxItemWidth: ' .. maxItemWidth)
     return maxItemWidth + self.paddingLeft * 2
   else
     return self.columns * self.columnWidth + self.paddingLeft * 2
@@ -71,11 +73,15 @@ function Selection:handleInput()
     elseif love.keyboard.wasPressed('space') then
       if self.items[self:getIndex()] then
         self.items[self:getIndex()]:onSelect()
-        return
       end
     end
 end
 
+function Selection:exit()
+  if self.closeOnSelect then
+    gStateStack:pop()
+  end
+end
 
 function Selection:moveUp()
   self.focusY = math.max(self.focusY - 1, 1)
@@ -138,13 +144,23 @@ function Selection:render()
     for i = displayStart, displayEnd do
       for j = 1, self.columns do
         love.graphics.setColor(0, 0, 0, 1)
-        if i == self.focusY and j == self.focusX and self.cursor then
+        local item = self.items[itemIndex]
 
-            love.graphics.setColor(self.markerColor)
-          -- love.graphics.rectangle('fill', x, y-lineHeight / 2 + self.paddingTop / 2, self.columnWidth - self.paddingLeft, lineHeight)
+        if i == self.focusY and j == self.focusX and self.cursor then
+          local fontSize = self.font:getHeight()
+          local font = love.graphics.newFont('fonts/font.ttf', fontSize)
+          love.graphics.setColor(self.markerColor)
+          love.graphics.setFont(font)
+          if item then
+            self:renderItem(item, x+1, y+1)
+          else
+            self:renderItem({text = ' - '}, x+1, y+1)
+          end
+          love.graphics.setFont(self.font)
+
         end
 
-        local item = self.items[itemIndex]
+        love.graphics.setColor(self.textColor)
         if item then
           self:renderItem(item, x, y)
         else

@@ -27,7 +27,9 @@ end
 
 function ScrollBar:render()
   local value = (self.value / self.maxValue) * self.height
-  love.graphics.setColor(1, 1, 1, 1)
+
+
+  love.graphics.setColor(1, 1, 1, 0)
   love.graphics.rectangle('fill', self.x, self.y, self.width, self.height, self.roundedBorder)
 
   love.graphics.setColor(self.borderColor)

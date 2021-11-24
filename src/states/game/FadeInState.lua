@@ -1,6 +1,6 @@
 FadeInState = Class {__includes = BaseState}
 
-function FadeInState:init(color, time, onFadeComplete)
+function FadeInState:init(color, time, onFadeComplete, contine)
   self.r = color[1]
   self.b = color[2]
   self.g = color[3]
@@ -9,6 +9,8 @@ function FadeInState:init(color, time, onFadeComplete)
 
   self.time = time
   self.onFadeComplete = onFadeComplete or function() end
+
+  if contine == nil then self.continue = false else self.contine = contine end
 end
 
 function FadeInState:enter()
@@ -22,7 +24,7 @@ function FadeInState:enter()
 end
 
 function FadeInState:update(dt)
-
+  return self.contine
 end
 
 function FadeInState:render()

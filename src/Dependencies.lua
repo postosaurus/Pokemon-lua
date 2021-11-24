@@ -66,7 +66,7 @@ gTextures = {
   --TileMap
   ['sheet'] = love.graphics.newImage('graphics/sheet.png'),
   ['tilemap'] = love.graphics.newImage('graphics/tilemap.png'),
-  ['collsion'] = love.graphics.newImage('graphics/collision_graphic.png'),
+  ['collision'] = love.graphics.newImage('graphics/collision_graphic.png'),
   ['interior'] = love.graphics.newImage('graphics/interior.png'),
   ['living-room'] = love.graphics.newImage('graphics/living-room.png'),
 
@@ -76,7 +76,7 @@ gFrames = {
   ['entities'] = GenerateQuads(gTextures['entities'], 16, 16),
   ['sheet'] = GenerateQuads(gTextures['sheet'], 16, 16),
   ['tilemap'] = GenerateQuads(gTextures['tilemap'], 16, 16),
-  ['collsion'] = GenerateQuads(gTextures['collsion'], 16, 16),
+  ['collision'] = GenerateQuads(gTextures['collision'], 16, 16),
   ['interior'] = GenerateQuads(gTextures['interior'], 16, 16),
   ['living-room'] = GenerateQuads(gTextures['living-room'], 16, 16),
   ['balls'] = GenerateQuads(gTextures['balls'], 16, 16),
@@ -92,16 +92,25 @@ gFonts = {
 }
 
 --  Includes
+  require 'src/shader_defs'
+  require 'src/pokemon_defs'
   require 'src/StateStack'
-  require 'src/BaseState'
+  require 'src/StateMachine'
+  require 'src/states/BaseState'
+  require 'src/Animation'
 
   require 'src/states/game/StartState'
   require 'src/states/game/PlayState'
   require 'src/states/game/FadeInState'
   require 'src/states/game/FadeOutState'
+  require 'src/states/game/TestState'
 
   require 'src/states/gui/MenuState'
   require 'src/states/gui/DialogueState'
+  require 'src/states/gui/DialogueMenuState'
+  --
+  require 'src/states/entity/EntityBaseState'
+  require 'src/states/entity/EntityIdleState'
 
 
   require 'src/gui/Panel'
@@ -111,11 +120,12 @@ gFonts = {
   require 'src/gui/Selection'
   require 'src/gui/Menu'
 
+  require 'src/entity/Entity'
+  require 'src/entity/entity_defs'
 
 
 -- require 'src/Pokemon'
 -- require 'src/Party'
--- require 'src/Animation'
 -- require 'src/GameObject'
 -- require 'src/Item'
 -- require 'src/Door'
@@ -139,31 +149,26 @@ gFonts = {
 -- require 'src/states/battle/BattleMenuState'
 -- require 'src/states/battle/BattleStatsState'
 -- require 'src/states/battle/TakeTurnState'
+require 'src/states/entity/PlayerIdleState'
+require 'src/states/entity/EntityWalkState'
+require 'src/states/entity/PlayerWalkState'
 --
--- require 'src/states/entity/EntityBaseState'
--- require 'src/states/entity/EntityIdleState'
--- require 'src/states/entity/EntityWalkState'
--- require 'src/states/entity/PlayerIdleState'
--- require 'src/states/entity/PlayerWalkState'
---
--- require 'src/defs/entity_defs'
 -- require 'src/defs/item_defs'
 -- require 'src/defs/pokemon_defs'
 -- require 'src/defs/ai_defs'
--- require 'src/defs/level_defs'
 -- require 'src/defs/tile_ids'
 -- require 'src/defs/gameobject_defs'
 -- require 'src/defs/character_defs'
 --
--- require 'src/entity/Entity'
 -- require 'src/entity/Player'
 -- require 'src/entity/NPC'
 -- require 'src/entity/Inventory'
 --
--- require 'src/world/World'
--- require 'src/world/Level'
--- require 'src/world/Tile'
--- require 'src/world/TileMap'
+require 'src/world/level_defs'
+require 'src/world/World'
+require 'src/world/Level'
+require 'src/world/TileMap'
+require 'src/world/Tile'
 --
 
 
