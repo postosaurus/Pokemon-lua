@@ -88,13 +88,13 @@ end
 
 function ChangeLevel(levelName, enterParams)
 
-  gStateStack:push(FadeInState({r=0,b=0,g=0}, .5,
+  gStateStack:push(FadeInState({ 0, 0, 0}, .3,
   function()
     gWorld:changeLevel(levelName, enterParams)
     -- if enterParams ~= nil  then
     --   gWorld.player:setWorldPosition(enterParams.x, enterParams.y)
     -- end
-    gStateStack:push(FadeOutState({r=0,b=0,g=0}, .5, function() end ))
+    gStateStack:push(FadeOutState({ 0, 0, 0}, .3, function() end ))
   end))
 end
 
@@ -121,8 +121,3 @@ function RemoveItemFromInventory(player, item, amount, callback)
   player.inventory:removeItem(item, amount)
   callback()
 end
-
--- function PartyMenu(world, item, battlestate, callback)
---   print('World : '.. world)
---   gStateStack:push(PartyMenu(world, true, item, battleState, callback))
--- end

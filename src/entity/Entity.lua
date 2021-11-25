@@ -2,30 +2,38 @@ Entity = Class{}
 
 function Entity:init(world, def)
   self.world = world
+  self:setPosition(def.mapX or 12, def.mapY or 8)
 
-  self.mapX = def.mapX or 4
-  self.mapY = def.mapY or 4
   self.width = def.width or TILESIZE
   self.height = def.height or TILESIZE
-
-  self.x = (self.mapX -1) * self.width
-  self.y =  (self.mapY - 1) * self.height
-
+  
   self.direction = 'down'
   self.bumped = false
 
   self:generateAnimations(def.animations)
 end
 
+function Entity:setPosition(x, y)
+  self.x = (x - 1) * self.width
+  self.y =  ((y - 1) * self.height) - self.height / 2
+  self.mapX = x
+  self.mapY = y
+end
+
 function Entity:changeState(name)
   self.controller:change(name)
+end
+
+function Entity:collides(target)
+  return not (self.x + self.width < target.x or self.x > target.x + target.width or
+            self.y + self.height < target.y or self.y > target.y + target.height)
 end
 
 function Entity:generateAnimations(def)
   self.animations =  {}
 
   for k, animation in pairs(def) do
-    -- print(k, animation)
+
     self.animations[k] = Animation({
       frames = animation.frames,
       interval = animation.interval,

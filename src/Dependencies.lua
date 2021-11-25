@@ -81,7 +81,6 @@ gFrames = {
   ['living-room'] = GenerateQuads(gTextures['living-room'], 16, 16),
   ['balls'] = GenerateQuads(gTextures['balls'], 16, 16),
 }
--- print(#gFrames['balls'])
 
 gFonts = {
   ['super-tiny'] = love.graphics.newFont('fonts/font.ttf', 3),
@@ -98,6 +97,7 @@ gFonts = {
   require 'src/StateMachine'
   require 'src/states/BaseState'
   require 'src/Animation'
+  require 'src/Camera'
 
   require 'src/states/game/StartState'
   require 'src/states/game/PlayState'
@@ -111,7 +111,9 @@ gFonts = {
   --
   require 'src/states/entity/EntityBaseState'
   require 'src/states/entity/EntityIdleState'
-
+  require 'src/states/entity/PlayerIdleState'
+  require 'src/states/entity/EntityWalkState'
+  require 'src/states/entity/PlayerWalkState'
 
   require 'src/gui/Panel'
   require 'src/gui/Textbox'
@@ -123,19 +125,19 @@ gFonts = {
   require 'src/entity/Entity'
   require 'src/entity/entity_defs'
 
-
+  require 'src/world/level_defs'
+  require 'src/world/World'
+  require 'src/world/Level'
+  require 'src/world/TileMap'
+  require 'src/world/Tile'
+  require 'src/world/Gameobject'
 -- require 'src/Pokemon'
 -- require 'src/Party'
--- require 'src/GameObject'
 -- require 'src/Item'
 -- require 'src/Door'
 -- require 'src/StoryboardState'
 --
--- require 'src/states/StateStack'
--- require 'src/states/StateMachine'
--- require 'src/states/TestState'
--- require 'src/states/game/DialogueState'
--- require 'src/states/PokemonInfoState'
+
 --
 -- require 'src/states/menus/MenuState'  --Base Menu state
 -- require 'src/states/menus/DialogueMenuState' -- A Menu with a textbox
@@ -149,9 +151,6 @@ gFonts = {
 -- require 'src/states/battle/BattleMenuState'
 -- require 'src/states/battle/BattleStatsState'
 -- require 'src/states/battle/TakeTurnState'
-require 'src/states/entity/PlayerIdleState'
-require 'src/states/entity/EntityWalkState'
-require 'src/states/entity/PlayerWalkState'
 --
 -- require 'src/defs/item_defs'
 -- require 'src/defs/pokemon_defs'
@@ -163,18 +162,7 @@ require 'src/states/entity/PlayerWalkState'
 -- require 'src/entity/Player'
 -- require 'src/entity/NPC'
 -- require 'src/entity/Inventory'
---
-require 'src/world/level_defs'
-require 'src/world/World'
-require 'src/world/Level'
-require 'src/world/TileMap'
-require 'src/world/Tile'
---
 
-
-
-
---
 -- require 'src/battle/Opponent'
 -- require 'src/battle/BattleSprite'
 -- require 'src/battle/BattleDisplay'

@@ -5,19 +5,7 @@ function PlayState:init()
 end
 
 function PlayState:enter()
-  local answers = {
-    {text = 'Yes',
-    onSelect = function()
-      gStateStack:pop()
-      gStateStack:push(DialogueState('Thats cool!'))
-    end},
-    {text = 'No',
-    onSelect = function()
-      gStateStack:clear()
-      gStateStack:push(StartState())
-    end}
-  }
-  gStateStack:push(DialogueMenuState('Do you want to play?', answers))
+
 end
 
 function PlayState:handleInput()

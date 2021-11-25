@@ -36,6 +36,7 @@ function EntityWalkState:attempMove()
 
   local tile = level:getTile(toX, toY, 'grid')
   if tile.type == solid then
+    print(tile.type)
     self.entity.bumbed = true
     self.entity:changeAnimation('idle-'..self.entity.direction)
     self.entity:changeState('idle')

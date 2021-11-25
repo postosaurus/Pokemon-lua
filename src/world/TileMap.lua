@@ -13,9 +13,6 @@ function TileMap:init(def, tilesets)
   self.tiles = self:generateTiles(def.data)
 end
 
-function TileMap:getTile(x, y)
-  return self.tiles[y][x]
-end
 
 function TileMap:getTilesByType(x, y, type)
   local listOfTiles = {}
@@ -64,6 +61,8 @@ function TileMap:generateTiles(def)
                             -- onInteract = def[id].properties['text']
                           elseif type == 'door' then
                             -- onEnter = def[id].onEnter
+                          elseif type == 'solid' then
+                            -- print('solid type found')
                           end
 
 
@@ -71,6 +70,8 @@ function TileMap:generateTiles(def)
                       end
                   end
                   break
+              else
+                type = def.type
               end
           end
 
@@ -79,12 +80,13 @@ function TileMap:generateTiles(def)
           end
 
           id = id - tset_gid  + 1
+          -- print(type)
 
           listOfTiles[y][x] = Tile({
             x = x,
             y = y,
             id = id,
-            type = type or nil,
+            type = type,
             texture = texture,
             onEnter = onEnter,
             onExit = onExit,
@@ -107,10 +109,12 @@ function TileMap:render()
       for x = 1, self.width do
         local tile = self:getTile(x, y)
         if tile and tile.id ~= 0 then
-        -- if tile.visible then
-        tile:render()
-        -- print('Tile exists and renders')
-        -- table.foreach(tile, print)
+          if tile.type == 'solid' then
+            love.graphics.setColor(0,0,0,1)
+          end
+          tile:render()
+          love.graphics.setColor(1,1,1,1)
+
         end
       end
     end

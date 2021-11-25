@@ -11,6 +11,9 @@ function Tile:init(def)
   self.onEnter = def.onEnter or function() end
   self.onExit = def.OnExit or function() end
   self.onInteract = def.onInteract or function() end
+  if self.type then
+    
+  end
 end
 
 

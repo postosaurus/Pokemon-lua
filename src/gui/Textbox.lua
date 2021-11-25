@@ -3,8 +3,6 @@ Textbox = Class {}
 function Textbox:init(text, def)
   self.text = tostring(text) or '__empty___'
 
-  -- if def == nil then def = {} end
-
   self.panel = Panel(def)
   self.x = def.x or 0
   self.y = def.y or 0
@@ -21,7 +19,7 @@ function Textbox:init(text, def)
 
   local lineHeight = self.font:getHeight(self.textChunks[1])
   self.lines = math.floor(((self.height - self.paddingTop * 2) / (lineHeight + self.paddingTop)))
-  -- print(self.width .. ' : ' .. #self.textChunks .. ' = ' .. self.lines)
+
 
   self.chunkCounter = 1
   self.endOfText = false
@@ -52,7 +50,6 @@ end
 function Textbox:nextChunks()
     local chunks = {}
 
-    -- print('before nextChunks_ ' ..self.chunkCounter)
     for i = self.chunkCounter, self.chunkCounter + self.lines do
       table.insert(chunks, self.textChunks[i])
 
@@ -63,7 +60,6 @@ function Textbox:nextChunks()
     end
 
     self.chunkCounter = self.chunkCounter + self.lines + 1
-    -- print('after nextChunks_ ' ..self.chunkCounter .. '  lines: ' ..tostring(math.max(self.lines, 1)))
     return chunks
 end
 

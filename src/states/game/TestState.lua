@@ -65,7 +65,7 @@ function TestState:render()
     shader:send("num_lights", #lights)
       for i, light in ipairs(lights)do
          local name = "lights[" .. i-1 .."]"
-         print(name)
+         
          shader:send(name .. ".position", light.position)
          shader:send(name .. ".diffuse", light.diffuse)
          shader:send(name .. ".power", light.power)
@@ -80,7 +80,7 @@ function TestState:render()
   -- love.graphics.setShader(shader)
   -- shader:send('time', self.timer)
   -- love.graphics.printf('Postymon', 0, 32, VIRTUAL_WIDTH, 'center')
-  love.graphics.setShader() 
+  love.graphics.setShader()
 
 
   love.graphics.setColor(1, 1, 1, 1)

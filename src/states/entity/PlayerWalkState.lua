@@ -16,7 +16,7 @@ function PlayerWalkState:attempMove()
   local toX = self.entity.mapX
   local toY = self.entity.mapY
   local level = self.world:getCurrentLevel()
-  table.foreach(level, print)
+
   if self.entity.direction == 'up' then
     toY = toY - 1
   elseif self.entity.direction == 'down' then
@@ -27,22 +27,43 @@ function PlayerWalkState:attempMove()
     toX = toX - 1
   end
 
+  -- print(toX, toY)
   if toX < 1 or toX > level.tileWidth or toY < 1 or toY > level.tileHeight then
-    self.entity.bumbed = true
-    self.entity:changeAnimation('idle-'..self.entity.direction)
-    self.entity:changeState('idle')
+    self:stop()
     return
+
+  else
+
+    local tile = level:getTile(toX, toY, 'grid')
+    if tile then
+      if tile.id == 1 then
+        self:stop()
+        return
+      end
+      
+    end
+
   end
 
+
+  -- print(toX, toY)
   self.entity.mapX = toX
   self.entity.mapY = toY
   self.entity.bumped = false
 
-  Timer.tween(.24, {
+  Timer.tween(.18, {
     [self.entity] = {
-      x = (toX - 1) * level.tileWidth,
-      y = (toY - 1) * level.tileHeight}
+      x = (toX - 1) * TILESIZE,
+      y = ((toY - 1) * TILESIZE) - self.entity.height / 2}
   }):finish(function()
+    for i, object in ipairs(level.objects) do
+      if self.entity:collides(object) then
+        print('collision')
+        object:onEnter()
+      end
+    end
+
+
     if love.keyboard.isDown('w') then
       self.entity.direction = 'up'
       self.entity:changeState('walk')
@@ -63,4 +84,13 @@ function PlayerWalkState:attempMove()
       self.entity:changeState('idle')
     end
   end)
+
+end
+
+
+function PlayerWalkState:stop()
+  self.entity.bumbed = true
+  self.entity:changeAnimation('idle-'..self.entity.direction)
+  self.entity:changeState('idle')
+  return
 end

@@ -12,7 +12,6 @@ self.current = self.empty
 end
 
 function StateMachine:change(stateName, enterParams)
-  print(self.states[stateName])
   assert(self.states[stateName])
   self.current:exit()
   self.current = self.states[stateName]()

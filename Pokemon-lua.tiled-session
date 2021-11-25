@@ -1,0 +1,336 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "tiledMaps/start.tmx",
+    "automapping.whileDrawing": false,
+    "expandedProjectPaths": [
+        "tiledMaps/rules",
+        "/home/posty/Dokumente/Projects/pok/src/world/levels",
+        "tiledMaps",
+        "/home/posty",
+        "/home/posty/Dokumente/Projects/tiledMaps"
+    ],
+    "file.lastUsedOpenFilter": "Alle Dateien (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/posty/Dokumente/Projects/pok/src/world/levels/collision_graphic.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/posty/Dokumente/Projects/pok/src/world/levels/collsion.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/posty/Dokumente/Projects/pok/src/world/levels/field.tmx": {
+            "scale": 1.468181818181818,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 159.38080495356039,
+                "y": 167.89473684210526
+            }
+        },
+        "/home/posty/Dokumente/Projects/pok/src/world/levels/house.tmx": {
+            "scale": 2.936363636363636,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 122.26006191950465,
+                "y": 164.31888544891643
+            }
+        },
+        "/home/posty/Dokumente/Projects/pok/src/world/levels/interior.tsx": {
+            "scaleInDock": 1.4948,
+            "scaleInEditor": 1
+        },
+        "/home/posty/Dokumente/Projects/pok/src/world/levels/living-room.tsx": {
+            "scaleInDock": 1.3682,
+            "scaleInEditor": 1
+        },
+        "/home/posty/Dokumente/Projects/pok/src/world/levels/sheet.tsx": {
+            "scaleInDock": 1.045,
+            "scaleInEditor": 1
+        },
+        "/home/posty/Dokumente/Projects/pok/src/world/levels/start.tmx": {
+            "scale": 3.6355,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 315.499931233668,
+                "y": 236.14358410122406
+            }
+        },
+        "/home/posty/Dokumente/Projects/pok/src/world/levels/start.tmx#sheet": {
+            "scaleInDock": 1
+        },
+        "/home/posty/Dokumente/Projects/pok/src/world/levels/tilemap.tsx": {
+            "scaleInDock": 1.3751,
+            "scaleInEditor": 1
+        },
+        "/home/posty/Dokumente/Projects/tiledMaps/collision_graphic.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/posty/Dokumente/Projects/tiledMaps/rules-house.tmx": {
+            "scale": 4.6149,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 94.0432078701597,
+                "y": 58.3977984355024
+            }
+        },
+        "/home/posty/Dokumente/Projects/tiledMaps/rules-house.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "/home/posty/Dokumente/Projects/tiledMaps/rules-house.tmx#tilemap": {
+            "scaleInDock": 1.4414
+        },
+        "/home/posty/Dokumente/Projects/tiledMaps/rules.tmx": {
+            "scale": 4.6149,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 18.851979457843072,
+                "y": 64.68179158811675
+            }
+        },
+        "/home/posty/Dokumente/Projects/tiledMaps/rules.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "/home/posty/Dokumente/Projects/tiledMaps/rules.tmx#tilemap": {
+            "scaleInDock": 1.9279
+        },
+        "/home/posty/Dokumente/Projects/tiledMaps/start.tmx": {
+            "scale": 3.2895,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 143.48685210518317,
+                "y": 98.03921568627452
+            }
+        },
+        "/home/posty/Dokumente/Projects/tiledMaps/start.tmx#collision": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/posty/Dokumente/Projects/tiledMaps/start.tmx#collision_graphic": {
+            "scaleInDock": 1
+        },
+        "/home/posty/Dokumente/Projects/tiledMaps/start.tmx#tilemap": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3.4854
+        },
+        "/home/posty/Dokumente/Projects/tiledMaps/tilemap.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1.3561,
+            "scaleInEditor": 1
+        },
+        "tiledMaps/_tree-rules.tmx": {
+            "scale": 2.1883,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 337.24809212630817,
+                "y": 59.63533336379838
+            }
+        },
+        "tiledMaps/_tree-rules.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/_tree-rules.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/fixes-tree-rules.tmx": {
+            "scale": 5.1747,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 91.98600885075464,
+                "y": 23.28637408931919
+            }
+        },
+        "tiledMaps/fixes-tree-rules.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/fixes-tree-rules.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/grass-rules.tmx": {
+            "scale": 11.340625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 24.072747313309453,
+                "y": 23.940479470928633
+            }
+        },
+        "tiledMaps/grass-rules.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/grass-rules.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/house-rules.tmx": {
+            "scale": 3.6871875,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 80.0067802356132,
+                "y": 79.59996609882194
+            }
+        },
+        "tiledMaps/house-rules.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/house-rules.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/house.tmx": {
+            "scale": 3.5819,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 174.48840001116724,
+                "y": 218.18029537396353
+            }
+        },
+        "tiledMaps/house.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/house.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/rules-grass.tmx": {
+            "scale": 20.128125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 8.048439683278993,
+                "y": 8.023598820058996
+            }
+        },
+        "tiledMaps/rules-grass.tmx#collision_graphic": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/rules-grass.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/rules-house.tmx": {
+            "scale": 4.6149,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 93.3931396129927,
+                "y": 58.3977984355024
+            }
+        },
+        "tiledMaps/rules-house.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/rules-house.tmx#tilemap": {
+            "scaleInDock": 1.4414
+        },
+        "tiledMaps/rules-trees.tmx": {
+            "scale": 1.00640625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 151.03244837758112,
+                "y": 160.47197640117994
+            }
+        },
+        "tiledMaps/rules-trees.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/rules-trees.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/rules/rules-grass.tmx": {
+            "scale": 2.8326,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 27.889571418484763,
+                "y": -23.476664548471376
+            }
+        },
+        "tiledMaps/rules/rules-grass.tmx#collision_graphic": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/rules/rules-grass.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/rules/rules-trees.tmx": {
+            "scale": 1.84359375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 151.8772777354013,
+                "y": 111.46707348080344
+            }
+        },
+        "tiledMaps/rules/rules-trees.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/rules/rules-trees.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/start.tmx": {
+            "scale": 3.5121,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 136.38563822214627,
+                "y": 178.6680333703482
+            }
+        },
+        "tiledMaps/start.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/start.tmx#collision_graphic": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/start.tmx#tilemap": {
+            "scaleInDock": 1.7824
+        },
+        "tiledMaps/tree-rules.tmx": {
+            "scale": 3.2256,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 295.75892857142856,
+                "y": 335.906498015873
+            }
+        },
+        "tiledMaps/tree-rules.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/tree-rules.tmx#tilemap": {
+            "scaleInDock": 1.5446
+        }
+    },
+    "map.height": 16,
+    "map.lastUsedExportFilter": "Alle Dateien (*)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 16,
+    "openFiles": [
+        "tiledMaps/house-rules.tmx",
+        "tiledMaps/grass-rules.tmx",
+        "tiledMaps/tree-rules.tmx",
+        "tiledMaps/start.tmx",
+        "tiledMaps/fixes-tree-rules.tmx"
+    ],
+    "project": "Pokemon-lua.tiled-project",
+    "property.type": "int",
+    "recentFiles": [
+        "tiledMaps/start.tmx",
+        "tiledMaps/house-rules.tmx",
+        "tiledMaps/grass-rules.tmx",
+        "tiledMaps/tree-rules.tmx",
+        "tiledMaps/fixes-tree-rules.tmx",
+        "tiledMaps/rules-house.tmx",
+        "tiledMaps/rules-grass.tmx",
+        "tiledMaps/rules-trees.tmx",
+        "tiledMaps/rules/rules-grass.tmx",
+        "tiledMaps/rules/rules-trees.tmx",
+        "/home/posty/Dokumente/Projects/tiledMaps/start.tmx",
+        "/home/posty/Dokumente/Projects/tiledMaps/collision_graphic.tsx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

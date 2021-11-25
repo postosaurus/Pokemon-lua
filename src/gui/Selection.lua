@@ -20,7 +20,7 @@ function Selection:init(def)
   if def.closeOnSelect == nil then self.closeOnSelect = false else self.closeOnSelect = def.closeOnSelect end
 
   self.rows = def.rows or #self.items
-  print(#self.items)
+
   self.maxRows = def.maxRows or self.rows
   self.columns = def.columns or 1
   self.columnWidth = def.columnWidth or 50
@@ -48,7 +48,7 @@ function Selection:calcWidth()
     for k, item in ipairs(self.items) do
       maxItemWidth =  math.max(self.font:getWidth(item.text), maxItemWidth)
     end
-    -- print('maxItemWidth: ' .. maxItemWidth)
+
     return maxItemWidth + self.paddingLeft * 2
   else
     return self.columns * self.columnWidth + self.paddingLeft * 2
@@ -182,7 +182,7 @@ function Selection:render()
 end
 
 function Selection:renderItem(item, x, y)
-  -- love.graphics.setColor(self.textColor)
+  
   if self.align then
     love.graphics.printf(item.text, x, y, self.width - self.paddingLeft, self.align)
   else

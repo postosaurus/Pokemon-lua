@@ -12,7 +12,6 @@ function EntityBaseState:ProcessAI(params, dt) end
 
 function EntityBaseState:render()
   local texture = self.entity.currentAnimation.texture
-  print(texture, self.entity.currentAnimation:getFrame())
   love.graphics.draw(
     gTextures[texture],
     gFrames[texture][self.entity.currentAnimation:getFrame()],
