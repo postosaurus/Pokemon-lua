@@ -22,6 +22,7 @@ function Level:generateLayers(def)
   end
 
   for k, layer in ipairs(def) do
+
     if layer.type == 'tilelayer' then
       self.layers[layer.name] = TileMap(layer, self.tilesets)
 
@@ -30,39 +31,78 @@ function Level:generateLayers(def)
 
       for k, object in pairs(layer.objects) do
 
+        local onEnter = function() print('__empty__ from Level') return true end
+        local onExit = function() print('__empty__ from Level') return true end
+        local onInteract = function() print('__empty__ from Level') return true end
+
 
         if object.type == 'door' then
-
+          print('making door')
           local nextLevel = object.properties.nextLevel
           local playerDirection = object.properties.playerDirection
 
           local playerPositionX = object.properties.x
           local playerPositionY = object.properties.y
-          print(playerPositionX, playerPositionY)
-          local onEnter = function()
 
-            ChangeLevel(nextLevel, {
+          onEnter = function()
+            return ACTIONS['changeLevel'](nextLevel, {
               x = playerPositionX,
               y = playerPositionY,
               direction = playerDirection})
+            end
+
+        elseif object.type == 'readable' then
+          print('making readable')
+          onInteract = function()
+            return ACTIONS['say'](object.properties.text)
           end
 
-          local objectDef = {
-            x = object.x,
-            y = object.y,
-            type = object.type,
-            width = object.width or 16,
-            height = object.height or 16,
-            visible = object.visible,
+        elseif object.type == 'trigger' then
+          print('making trigger')
+          local action = object.properties.action
 
-            onEnter = onEnter,
-            onExit = function() end,
-            onInteract = function() end,
+          if action == 'onEnter' then
+            onEnter = function()
+              return ACTIONS[object.properties.func](object.properties.params, self.world.player)
+            end
+
+          elseif action == 'onExit' then
+            onExit = function()
+              return ACTIONS[object.properties.func](object.properties.params, self.world.player)
+            end
+
+          elseif action == 'onInteract' then
+            onInteract = function()
+              return ACTIONS[object.properties.func](object.properties.params, self.world.player)
+            end
+
+          end
+
+        elseif object.type == 'item' then
+          print('making item')
+          onInteract = function() AddItem(object.properties.name, object.properties.amount)
+
+        end
+
+
+        local objectDef = {
+          x = object.x,
+          y = object.y,
+          type = object.type,
+          width = object.width or 16,
+          height = object.height or 16,
+          visible = object.visible,
+
+          solid = object.solid,
+
+          onEnter = onEnter,
+          onExit = onExit,
+          onInteract = onInteract
           }
 
         table.insert(self.objects, Gameobject(world, objectDef))
+        -- end
 
-        end
       end
 
     end
@@ -117,7 +157,7 @@ function Level:render()
         layer:render()
 
       else
-        print('Warning Level.lua:render() 48: layer ' .. renderOrder[i] .. ' not found in self.layers.')
+        -- print('Warning Level.lua:render() 48: layer ' .. renderOrder[i] .. ' not found in self.layers.')
       end
 
     end

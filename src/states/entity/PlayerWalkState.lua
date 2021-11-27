@@ -13,9 +13,13 @@ end
 
 function PlayerWalkState:attempMove()
   self.entity:changeAnimation('walk-' .. self.entity.direction)
+  -- self.entity.bumbed = false
+  local level = self.world:getCurrentLevel()
+
+
+
   local toX = self.entity.mapX
   local toY = self.entity.mapY
-  local level = self.world:getCurrentLevel()
 
   if self.entity.direction == 'up' then
     toY = toY - 1
@@ -40,9 +44,20 @@ function PlayerWalkState:attempMove()
         self:stop()
         return
       end
-      
     end
+  end
 
+
+  for i, object in ipairs(level.objects) do
+    if Collides(self.entity, object) then
+      local continue = object:onExit()
+      -- if not continue then
+      --   print('returns the whole thing in PlayerWalkState')
+      --   self:stop()
+      --   self.entity.bumbed = true
+      --   return
+      -- end
+    end
   end
 
 
@@ -54,13 +69,29 @@ function PlayerWalkState:attempMove()
   Timer.tween(.18, {
     [self.entity] = {
       x = (toX - 1) * TILESIZE,
-      y = ((toY - 1) * TILESIZE) - self.entity.height / 2}
+      y = ((toY - 1) * TILESIZE) - self.entity.height / 2
+    },
+
   }):finish(function()
+
+    self.entity:setCollider(self.entity.direction)
+
+
     for i, object in ipairs(level.objects) do
-      if self.entity:collides(object) then
-        print('collision')
-        object:onEnter()
+      if Collides(self.entity, object) then
+
+        local continue = object:onEnter()
+        if not continue then
+          print('returns the whole thing in PlayerWalkState')
+          self:stop()
+          return
+        end
       end
+    end
+
+    print('checking new input in Playerwalk after everything')
+    if not self.entity.canInput then
+      return
     end
 
 

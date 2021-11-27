@@ -6,11 +6,11 @@
     "activeFile": "tiledMaps/start.tmx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
-        "tiledMaps/rules",
-        "/home/posty/Dokumente/Projects/pok/src/world/levels",
         "tiledMaps",
         "/home/posty",
-        "/home/posty/Dokumente/Projects/tiledMaps"
+        "/home/posty/Dokumente/Projects/tiledMaps",
+        "tiledMaps/rules",
+        "/home/posty/Dokumente/Projects/pok/src/world/levels"
     ],
     "file.lastUsedOpenFilter": "Alle Dateien (*)",
     "fileStates": {
@@ -144,8 +144,8 @@
             "scale": 5.1747,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 91.98600885075464,
-                "y": 23.28637408931919
+                "x": 255.86024310588056,
+                "y": 255.9568670647574
             }
         },
         "tiledMaps/fixes-tree-rules.tmx#collision": {
@@ -158,7 +158,7 @@
             "scale": 11.340625,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 24.072747313309453,
+                "x": 23.984568751722243,
                 "y": 23.940479470928633
             }
         },
@@ -172,7 +172,7 @@
             "scale": 3.6871875,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 80.0067802356132,
+                "x": 79.7355708110857,
                 "y": 79.59996609882194
             }
         },
@@ -183,17 +183,34 @@
             "scaleInDock": 1
         },
         "tiledMaps/house.tmx": {
-            "scale": 3.5819,
+            "scale": 3.1205,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 174.48840001116724,
-                "y": 218.18029537396353
+                "x": 129.78689312610157,
+                "y": 247.8769427976286
             }
         },
         "tiledMaps/house.tmx#collision": {
             "scaleInDock": 1
         },
+        "tiledMaps/house.tmx#interior": {
+            "scaleInDock": 1.6331
+        },
         "tiledMaps/house.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/interior-rules.tmx": {
+            "scale": 1.690441176470588,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 119.49543279686822,
+                "y": 163.5667681600696
+            }
+        },
+        "tiledMaps/interior-rules.tmx#collision": {
+            "scaleInDock": 1
+        },
+        "tiledMaps/interior-rules.tmx#interior": {
             "scaleInDock": 1
         },
         "tiledMaps/rules-grass.tmx": {
@@ -267,11 +284,11 @@
             "scaleInDock": 1
         },
         "tiledMaps/start.tmx": {
-            "scale": 3.5121,
+            "scale": 5.8989,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 136.38563822214627,
-                "y": 178.6680333703482
+                "x": 99.84912441302615,
+                "y": 163.50506026547322
             }
         },
         "tiledMaps/start.tmx#collision": {
@@ -287,7 +304,7 @@
             "scale": 3.2256,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 295.75892857142856,
+                "x": 295.7589285714286,
                 "y": 335.906498015873
             }
         },
@@ -308,24 +325,25 @@
         "tiledMaps/house-rules.tmx",
         "tiledMaps/grass-rules.tmx",
         "tiledMaps/tree-rules.tmx",
+        "tiledMaps/fixes-tree-rules.tmx",
         "tiledMaps/start.tmx",
-        "tiledMaps/fixes-tree-rules.tmx"
+        "tiledMaps/house.tmx"
     ],
     "project": "Pokemon-lua.tiled-project",
     "property.type": "int",
     "recentFiles": [
-        "tiledMaps/start.tmx",
+        "tiledMaps/house.tmx",
         "tiledMaps/house-rules.tmx",
         "tiledMaps/grass-rules.tmx",
         "tiledMaps/tree-rules.tmx",
         "tiledMaps/fixes-tree-rules.tmx",
+        "tiledMaps/start.tmx",
         "tiledMaps/rules-house.tmx",
         "tiledMaps/rules-grass.tmx",
         "tiledMaps/rules-trees.tmx",
         "tiledMaps/rules/rules-grass.tmx",
         "tiledMaps/rules/rules-trees.tmx",
-        "/home/posty/Dokumente/Projects/tiledMaps/start.tmx",
-        "/home/posty/Dokumente/Projects/tiledMaps/collision_graphic.tsx"
+        "/home/posty/Dokumente/Projects/tiledMaps/start.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFormat": "tsx",

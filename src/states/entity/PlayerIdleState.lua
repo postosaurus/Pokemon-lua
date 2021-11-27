@@ -21,6 +21,16 @@ function PlayerIdleState:handleInput()
   elseif love.keyboard.wasPressed('s') then
     self.entity.direction = 'down'
     self.entity:changeState('walk')
+
+  elseif love.keyboard.wasPressed('space') then
+
+    for i, object in ipairs(self.world:getCurrentLevel().objects) do
+
+        if self.entity:collides(object) then
+          object:onInteract()
+        end
+
+    end
   end
 end
 

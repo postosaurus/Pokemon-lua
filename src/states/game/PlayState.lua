@@ -10,6 +10,11 @@ end
 
 function PlayState:handleInput()
   self.world:handleInput()
+  -- if love.keyboard.wasPressed('up') then
+  --   ACTIONS['move']('up', self.world.player)
+  -- elseif love.keyboard.wasPressed('down') then
+  --   ACTIONS['move']('down', self.world.player)
+  -- end
 end
 
 function PlayState:update(dt)

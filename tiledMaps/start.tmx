@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="41" nextobjectid="14">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="41" nextobjectid="26">
  <editorsettings>
   <export target="../src/world/levels/start.lua" format="lua"/>
  </editorsettings>
@@ -174,17 +174,55 @@
 </data>
  </layer>
  <objectgroup id="36" name="objects">
-  <object id="11" type="door" x="112" y="160" width="16" height="6.32629" visible="0">
-   <properties>
-    <property name="nextLevel" value="house"/>
-    <property name="playerDirection" value="up"/>
-    <property name="x" type="int" value="10"/>
-    <property name="y" type="int" value="15"/>
-   </properties>
-  </object>
-  <object id="13" type="readable" x="144" y="160" width="16" height="16">
+  <object id="13" type="readable" x="146.847" y="159.715" width="7.4581" height="12.5832">
    <properties>
     <property name="text" value="A house in the forest."/>
+   </properties>
+  </object>
+  <object id="14" type="door" x="120.169" y="156.071">
+   <properties>
+    <property name="nextLevel" value="house"/>
+    <property name="playerDirection" value="down"/>
+    <property name="x" type="int" value="11"/>
+    <property name="y" type="int" value="18"/>
+   </properties>
+  </object>
+  <object id="16" type="trigger" x="37.1564" y="252.752" width="264.635" height="9.39161">
+   <properties>
+    <property name="action" value="onEnter"/>
+    <property name="func" value="push-back"/>
+    <property name="params" value="You won't want to go to the forest without any protection."/>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="19" type="trigger" x="37.2051" y="77.9382" width="6.90154" height="182.119">
+   <properties>
+    <property name="action" value="onEnter"/>
+    <property name="func" value="push-back"/>
+    <property name="params" value="You won't want to go to the forest without any protection."/>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="20" type="trigger" x="296.84" y="72.7781" width="6.90154" height="182.119">
+   <properties>
+    <property name="action" value="onEnter"/>
+    <property name="func" value="push-back"/>
+    <property name="params" value="You won't want to go to the forest without any protection."/>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="21" type="trigger" x="36.8849" y="68.618" width="264.635" height="12.9222">
+   <properties>
+    <property name="action" value="onEnter"/>
+    <property name="func" value="push-back"/>
+    <property name="params" value="You won't want to go to the forest without any protection."/>
+    <property name="solid" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="25" type="item" x="208" y="144" width="16" height="16">
+   <properties>
+    <property name="amount" type="int" value="1"/>
+    <property name="name" value="pokeball"/>
    </properties>
   </object>
  </objectgroup>

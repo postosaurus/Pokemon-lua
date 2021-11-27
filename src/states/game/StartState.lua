@@ -56,6 +56,12 @@ function StartState:triggerMenu()
       onSelect = function()
         gStateStack:push(TestState())
       end
+    }, {
+      text = 'pop this state',
+      onSelect = function()
+        gStateStack:pop()
+        -- gStateStack:pop()
+      end
     }
   }
   })

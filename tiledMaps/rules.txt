@@ -2,3 +2,6 @@ house-rules.tmx
 grass-rules.tmx
 tree-rules.tmx
 fixes-tree-rules.tmx
+
+interior-rules.tmx
+

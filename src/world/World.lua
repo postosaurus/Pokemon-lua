@@ -49,10 +49,10 @@ function World:handleInput()
 end
 
 function World:update(dt)
+  self.camera:update(dt)
   self.currentLevel:update(dt)
   self.player:update(dt)
 
-  self.camera:update(dt)
 
   return false
 end

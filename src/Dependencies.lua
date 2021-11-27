@@ -98,6 +98,7 @@ gFonts = {
   require 'src/states/BaseState'
   require 'src/Animation'
   require 'src/Camera'
+  require 'src/Actions'
 
   require 'src/states/game/StartState'
   require 'src/states/game/PlayState'
@@ -152,7 +153,7 @@ gFonts = {
 -- require 'src/states/battle/BattleStatsState'
 -- require 'src/states/battle/TakeTurnState'
 --
--- require 'src/defs/item_defs'
+require 'src/item_defs'
 -- require 'src/defs/pokemon_defs'
 -- require 'src/defs/ai_defs'
 -- require 'src/defs/tile_ids'

@@ -10,6 +10,7 @@ function StateStack:push(state)
 end
 
 function StateStack:pop()
+  print("Stack pops state")
   self.states[#self.states]:exit()
   table.remove(self.states)
 end

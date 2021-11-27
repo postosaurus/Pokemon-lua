@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 41,
-  nextobjectid = 13,
+  nextobjectid = 26,
   properties = {},
   tilesets = {
     {
@@ -366,21 +366,124 @@ return {
       properties = {},
       objects = {
         {
-          id = 11,
+          id = 13,
+          name = "",
+          type = "readable",
+          shape = "rectangle",
+          x = 146.847,
+          y = 159.715,
+          width = 7.4581,
+          height = 12.5832,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["text"] = "A house in the forest."
+          }
+        },
+        {
+          id = 14,
           name = "",
           type = "door",
           shape = "rectangle",
-          x = 112,
-          y = 160,
-          width = 16,
-          height = 6.32629,
+          x = 120.169,
+          y = 156.071,
+          width = 0,
+          height = 0,
           rotation = 0,
-          visible = false,
+          visible = true,
           properties = {
             ["nextLevel"] = "house",
-            ["playerDirection"] = "up",
-            ["x"] = 10,
-            ["y"] = 15
+            ["playerDirection"] = "down",
+            ["x"] = 11,
+            ["y"] = 18
+          }
+        },
+        {
+          id = 16,
+          name = "",
+          type = "trigger",
+          shape = "rectangle",
+          x = 37.1564,
+          y = 252.752,
+          width = 264.635,
+          height = 9.39161,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["action"] = "onEnter",
+            ["func"] = "push-back",
+            ["params"] = "You won't want to go to the forest without any protection.",
+            ["solid"] = true
+          }
+        },
+        {
+          id = 19,
+          name = "",
+          type = "trigger",
+          shape = "rectangle",
+          x = 37.2051,
+          y = 77.9382,
+          width = 6.90154,
+          height = 182.119,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["action"] = "onEnter",
+            ["func"] = "push-back",
+            ["params"] = "You won't want to go to the forest without any protection.",
+            ["solid"] = true
+          }
+        },
+        {
+          id = 20,
+          name = "",
+          type = "trigger",
+          shape = "rectangle",
+          x = 296.84,
+          y = 72.7781,
+          width = 6.90154,
+          height = 182.119,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["action"] = "onEnter",
+            ["func"] = "push-back",
+            ["params"] = "You won't want to go to the forest without any protection.",
+            ["solid"] = true
+          }
+        },
+        {
+          id = 21,
+          name = "",
+          type = "trigger",
+          shape = "rectangle",
+          x = 36.8849,
+          y = 68.618,
+          width = 264.635,
+          height = 12.9222,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["action"] = "onEnter",
+            ["func"] = "push-back",
+            ["params"] = "You won't want to go to the forest without any protection.",
+            ["solid"] = true
+          }
+        },
+        {
+          id = 25,
+          name = "",
+          type = "item",
+          shape = "rectangle",
+          x = 208,
+          y = 144,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["amount"] = 1,
+            ["name"] = "pokeball"
           }
         }
       }

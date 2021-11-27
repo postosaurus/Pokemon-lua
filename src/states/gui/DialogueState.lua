@@ -1,22 +1,14 @@
 DialogueState = Class{__includes = BaseState}
 
-function DialogueState:init(text, onDialogueClose, def)
-  if def == nil then
-    self.textbox = Textbox(text, {x = 0, y = VIRTUAL_HEIGHT - 64, width = VIRTUAL_WIDTH, height = 64})
-    self.canInput = true
-
-  else
-    if def.canInput == nil then self.canInput = true else self.canInput = def.canInput end
-    if def.y == nil then def.y = VIRTUAL_HEIGHT - 64 end
-    self.textbox = Textbox(text, def)
-    self.canInput = def.canInput
-  end
-
+function DialogueState:init(text, onDialogueClose, canInput, def)
+  self.textbox = Textbox(text, {x = 0, y = VIRTUAL_HEIGHT - 64, width = VIRTUAL_WIDTH, height = 64})
+  if canInput == nil then self.canInput = true else self.canInput = canInput end
 
   self.onDialogueClose = onDialogueClose or function() print("__empty function__") end
 end
 
 function DialogueState:handleInput()
+  print(self.canInput)
   if self.canInput then
         if love.keyboard.wasPressed('space') then
           self.textbox:next()

@@ -13,6 +13,11 @@ function love.load()
     -- gStateStack:push(StartState())
     gStateStack:push(PlayState())
 
+    GAMESTATES = {
+      ['start'] = StartState,
+      ['play'] = PlayState,
+      ['test'] = TestState
+    }
     love.keyboard.keysPressed = {}
 
 end

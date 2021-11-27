@@ -38,7 +38,6 @@ function table.slice(tbl, first, last, step)
     return sliced
 end
 
-
 function StretchTexture(texture, x, y, width, height)
     local textureWidth = texture:getWidth()
     local textureHeight = texture:getHeight()
@@ -56,10 +55,6 @@ function math.clamp(value, min, max)
     else
         return value
     end
-end
-
-function Say(text, onDialogueClose, font, canInput)
-    gStateStack:push(DialogueState(text, onDialogueClose, font, canInput))
 end
 
 function Ask(question, items, onDialogueClose, font)
@@ -86,17 +81,7 @@ function Wait(waitTime, onDoneWaiting)
   Timer.after(waitTime, onDoneWaiting)
 end
 
-function ChangeLevel(levelName, enterParams)
 
-  gStateStack:push(FadeInState({ 0, 0, 0}, .3,
-  function()
-    gWorld:changeLevel(levelName, enterParams)
-    -- if enterParams ~= nil  then
-    --   gWorld.player:setWorldPosition(enterParams.x, enterParams.y)
-    -- end
-    gStateStack:push(FadeOutState({ 0, 0, 0}, .3, function() end ))
-  end))
-end
 
 function Collides(entity, target)
   return not (entity.x + entity.width < target.x or entity.x > target.x + target.width or
