@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 41,
-  nextobjectid = 26,
+  nextobjectid = 27,
   properties = {},
   tilesets = {
     {
@@ -168,7 +168,7 @@ return {
         1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
         1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
         1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1,
-        1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1,
+        1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1,
         1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
         1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
         1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1,
@@ -370,32 +370,15 @@ return {
           name = "",
           type = "readable",
           shape = "rectangle",
-          x = 146.847,
-          y = 159.715,
-          width = 7.4581,
-          height = 12.5832,
+          x = 149.086,
+          y = 160.339,
+          width = 5.82861,
+          height = 9.55812,
           rotation = 0,
           visible = true,
           properties = {
+            ["solid"] = false,
             ["text"] = "A house in the forest."
-          }
-        },
-        {
-          id = 14,
-          name = "",
-          type = "door",
-          shape = "rectangle",
-          x = 120.169,
-          y = 156.071,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["nextLevel"] = "house",
-            ["playerDirection"] = "down",
-            ["x"] = 11,
-            ["y"] = 18
           }
         },
         {
@@ -403,17 +386,17 @@ return {
           name = "",
           type = "trigger",
           shape = "rectangle",
-          x = 37.1564,
-          y = 252.752,
+          x = 32,
+          y = 272,
           width = 264.635,
-          height = 9.39161,
+          height = 6.14361,
           rotation = 0,
           visible = true,
           properties = {
             ["action"] = "onEnter",
             ["func"] = "push-back",
-            ["params"] = "You won't want to go to the forest without any protection.",
-            ["solid"] = true
+            ["solid"] = false,
+            ["text"] = "You won't want to go to the forest without any protection."
           }
         },
         {
@@ -421,17 +404,17 @@ return {
           name = "",
           type = "trigger",
           shape = "rectangle",
-          x = 37.2051,
-          y = 77.9382,
-          width = 6.90154,
-          height = 182.119,
+          x = 21.2699,
+          y = 78.1077,
+          width = 10.7301,
+          height = 177.892,
           rotation = 0,
           visible = true,
           properties = {
             ["action"] = "onEnter",
             ["func"] = "push-back",
-            ["params"] = "You won't want to go to the forest without any protection.",
-            ["solid"] = true
+            ["solid"] = false,
+            ["text"] = "You won't want to go to the forest without any protection."
           }
         },
         {
@@ -439,8 +422,8 @@ return {
           name = "",
           type = "trigger",
           shape = "rectangle",
-          x = 296.84,
-          y = 72.7781,
+          x = 304,
+          y = 64,
           width = 6.90154,
           height = 182.119,
           rotation = 0,
@@ -448,8 +431,8 @@ return {
           properties = {
             ["action"] = "onEnter",
             ["func"] = "push-back",
-            ["params"] = "You won't want to go to the forest without any protection.",
-            ["solid"] = true
+            ["solid"] = false,
+            ["text"] = "You won't want to go to the forest without any protection."
           }
         },
         {
@@ -457,8 +440,8 @@ return {
           name = "",
           type = "trigger",
           shape = "rectangle",
-          x = 36.8849,
-          y = 68.618,
+          x = 32,
+          y = 64,
           width = 264.635,
           height = 12.9222,
           rotation = 0,
@@ -466,8 +449,8 @@ return {
           properties = {
             ["action"] = "onEnter",
             ["func"] = "push-back",
-            ["params"] = "You won't want to go to the forest without any protection.",
-            ["solid"] = true
+            ["solid"] = false,
+            ["text"] = "You won't want to go to the forest without any protection."
           }
         },
         {
@@ -484,6 +467,23 @@ return {
           properties = {
             ["amount"] = 1,
             ["name"] = "pokeball"
+          }
+        },
+        {
+          id = 26,
+          name = "",
+          type = "door",
+          shape = "rectangle",
+          x = 112,
+          y = 145.421,
+          width = 16,
+          height = 26.5104,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["nextLevel"] = "house",
+            ["x"] = 11,
+            ["y"] = 18
           }
         }
       }

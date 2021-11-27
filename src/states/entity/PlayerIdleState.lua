@@ -26,8 +26,8 @@ function PlayerIdleState:handleInput()
 
     for i, object in ipairs(self.world:getCurrentLevel().objects) do
 
-        if self.entity:collides(object) then
-          object:onInteract()
+        if Collides(self.entity.collider, object) then
+          object:onInteract(object.params)(self.world:getCurrentLevel(), self.entity)
         end
 
     end

@@ -12,6 +12,8 @@ function Level:init(world, def)
   self.tilesets = def.tilesets
   self.grid = {}
   self:generateLayers(def.layers)
+
+  self.triggers = {}
 end
 
 function Level:generateLayers(def)
@@ -31,30 +33,23 @@ function Level:generateLayers(def)
 
       for k, object in pairs(layer.objects) do
 
-        local onEnter = function() print('__empty__ from Level') return true end
-        local onExit = function() print('__empty__ from Level') return true end
-        local onInteract = function() print('__empty__ from Level') return true end
+        local onEnter = function() return function() return true end end
+        local onExit = function() return function() return true end end
+        local onInteract = function()  return function() return true end end
 
 
         if object.type == 'door' then
           print('making door')
-          local nextLevel = object.properties.nextLevel
-          local playerDirection = object.properties.playerDirection
 
-          local playerPositionX = object.properties.x
-          local playerPositionY = object.properties.y
-
-          onEnter = function()
-            return ACTIONS['changeLevel'](nextLevel, {
-              x = playerPositionX,
-              y = playerPositionY,
-              direction = playerDirection})
+          onEnter = function(params)
+            return ACTIONS['changeLevel'](object.properties)
             end
 
         elseif object.type == 'readable' then
           print('making readable')
-          onInteract = function()
-            return ACTIONS['say'](object.properties.text)
+          onInteract = function(params)
+
+            return ACTIONS['say'](object.properties)
           end
 
         elseif object.type == 'trigger' then
@@ -62,25 +57,36 @@ function Level:generateLayers(def)
           local action = object.properties.action
 
           if action == 'onEnter' then
-            onEnter = function()
-              return ACTIONS[object.properties.func](object.properties.params, self.world.player)
+
+            local enterParams = object.properties
+
+            onEnter = function(params)
+              return ACTIONS[object.properties.func](enterParams)
             end
 
           elseif action == 'onExit' then
-            onExit = function()
-              return ACTIONS[object.properties.func](object.properties.params, self.world.player)
+
+            local enterParams = object.properties
+
+            onExit = function(params)
+              return ACTIONS[object.properties.func](enterParams)
             end
 
           elseif action == 'onInteract' then
-            onInteract = function()
-              return ACTIONS[object.properties.func](object.properties.params, self.world.player)
+
+            local enterParams = object.properties
+            onInteract = function(params)
+              return ACTIONS[object.properties.func](enterParams)
             end
 
           end
 
         elseif object.type == 'item' then
-          print('making item')
-          onInteract = function() AddItem(object.properties.name, object.properties.amount)
+          local enterParams = object.properties
+
+          onInteract = function(params)
+            return ACTIONS['addItem'](enterParams)
+          end
 
         end
 
@@ -92,8 +98,9 @@ function Level:generateLayers(def)
           width = object.width or 16,
           height = object.height or 16,
           visible = object.visible,
+          params = object.properties,
 
-          solid = object.solid,
+          solid = object.properties.solid,
 
           onEnter = onEnter,
           onExit = onExit,

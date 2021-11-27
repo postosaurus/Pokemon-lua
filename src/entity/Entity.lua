@@ -29,29 +29,36 @@ function Entity:setCollider(direction)
   local x, y
   local width = 4
   local height = 4
-  -- if direction == 'up' then
-  --   x = (self.x + self.width / 2) - (width / 2)  + self.offsetX
-  --   y = self.y - height + self.offsetY
-  --
-  -- elseif direction == 'down' then
-  --   x = (self.x + self.width / 2) - (width / 2) + self.offsetX
-  --   y = (self.y + self.height) + self.offsetY
-  --
-  -- elseif direction == 'left' then
-  --   x = (self.x) - width + self.offsetX
-  --   y = (self.y + self.height / 2) - (height / 2) + self.offsetY
-  --
-  -- elseif direction == 'right' then
-  --   x = (self.x + self.width) + self.offsetX
-  --   y = (self.y + self.height / 2) - (height / 2) + self.offsetY
-  --
-  -- end
+  if direction == 'up' then
+    x = self.x + self.width/2  - 5
+    y = self.y - 8
+    width = 10
+    height = 8
+
+  elseif direction == 'down' then
+    x = self.x + self.width/2 - 5
+    y = (self.y + self.height)
+    width = 10
+    height = 8
+
+  elseif direction == 'left' then
+      x = self.x + self.width / 2 - 16
+      y = self.y + self.height / 2 - 4
+    width = 8
+    height = 8
+
+  elseif direction == 'right' then
+      x = self.x + self.width
+      y = self.y + self.height / 2 - 4
+    width = 8
+    height = 8
+  end
 
   self.collider = {
-    x = self.x + self.offsetX / 2,
-    y = self.y + self.offsetY,
-    width = self.width - self.offsetX,
-    height = self.height - self.offsetY,
+    x = x,
+    y = y,
+    width = width,
+    height = height
   }
 end
 
@@ -110,5 +117,6 @@ end
 function Entity:render()
   self.controller:render()
   -- love.graphics.rectangle('line', self.x+self.offsetX, self.y+self.offsetY, self.width, self.height)
-  -- love.graphics.rectangle('line', self.collider.x, self.collider.y, self.collider.width, self.collider.height)
+  love.graphics.rectangle('line', self.collider.x, self.collider.y, self.collider.width, self.collider.height)
+  love.graphics.rectangle('line', self.x, self.y, self.width, self.height)
 end

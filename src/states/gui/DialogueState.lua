@@ -8,7 +8,7 @@ function DialogueState:init(text, onDialogueClose, canInput, def)
 end
 
 function DialogueState:handleInput()
-  print(self.canInput)
+-- self.canInput)
   if self.canInput then
         if love.keyboard.wasPressed('space') then
           self.textbox:next()

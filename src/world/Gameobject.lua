@@ -11,6 +11,8 @@ function Gameobject:init(world, def)
 
   self.solid = def.solid
 
+  self.params = def.params
+
   self.onEnter = def.onEnter or function() print('__empty__') end
   self.onExit = def.onExit or function() print('__empty__') end
   self.onInteract = def.onInteract or function() print('__empty__') end

@@ -186,8 +186,8 @@
             "scale": 3.1205,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 129.78689312610157,
-                "y": 247.8769427976286
+                "x": 175.93334401538218,
+                "y": 167.76157667040542
             }
         },
         "tiledMaps/house.tmx#collision": {
@@ -287,8 +287,8 @@
             "scale": 5.8989,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 99.84912441302615,
-                "y": 163.50506026547322
+                "x": 145.4508467680415,
+                "y": 177.0669107799759
             }
         },
         "tiledMaps/start.tmx#collision": {
@@ -330,14 +330,14 @@
         "tiledMaps/house.tmx"
     ],
     "project": "Pokemon-lua.tiled-project",
-    "property.type": "int",
+    "property.type": "string",
     "recentFiles": [
+        "tiledMaps/start.tmx",
         "tiledMaps/house.tmx",
         "tiledMaps/house-rules.tmx",
         "tiledMaps/grass-rules.tmx",
         "tiledMaps/tree-rules.tmx",
         "tiledMaps/fixes-tree-rules.tmx",
-        "tiledMaps/start.tmx",
         "tiledMaps/rules-house.tmx",
         "tiledMaps/rules-grass.tmx",
         "tiledMaps/rules-trees.tmx",

@@ -106,3 +106,20 @@ function RemoveItemFromInventory(player, item, amount, callback)
   player.inventory:removeItem(item, amount)
   callback()
 end
+
+function ChangeLevel(level, nextLevel, params)
+  level.world:changeLevel(nextLevel, params)
+end
+
+function GoInOppositeDirection(entity)
+  entity:setToOppositeDirection()
+  entity:changeState('walk')
+end
+
+function Teleport(entity, level)
+  entity:setPosition(entity.mapX, entity.mapY)
+end
+
+function AddItem(item, amount)
+  print(amount .. ' ' ..  item .. ' added to inventory.')
+end

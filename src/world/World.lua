@@ -1,7 +1,7 @@
 World = Class{}
 
 function World:init()
-  gWorld = self
+  -- gWorld = self
   self.levels = {}
   for k, level in pairs(LEVELS) do
 

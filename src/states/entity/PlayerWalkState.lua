@@ -9,6 +9,7 @@ function PlayerWalkState:enter()
   if not self.entity.bumped then
     self:attempMove()
   end
+  self.entity.canInput = true
 end
 
 function PlayerWalkState:attempMove()
@@ -20,6 +21,7 @@ function PlayerWalkState:attempMove()
 
   local toX = self.entity.mapX
   local toY = self.entity.mapY
+  local dir = 0
 
   if self.entity.direction == 'up' then
     toY = toY - 1
@@ -47,16 +49,9 @@ function PlayerWalkState:attempMove()
     end
   end
 
-
   for i, object in ipairs(level.objects) do
-    if Collides(self.entity, object) then
-      local continue = object:onExit()
-      -- if not continue then
-      --   print('returns the whole thing in PlayerWalkState')
-      --   self:stop()
-      --   self.entity.bumbed = true
-      --   return
-      -- end
+    if Collides(self.entity.collider, object) then
+      object:onExit(object.params)(self, self.entity)
     end
   end
 
@@ -78,11 +73,11 @@ function PlayerWalkState:attempMove()
 
 
     for i, object in ipairs(level.objects) do
-      if Collides(self.entity, object) then
+      if Collides(self.entity.collider, object) then
 
-        local continue = object:onEnter()
+        local continue = object:onEnter(object.params)(self, self.entity)
+        print(continue)
         if not continue then
-          print('returns the whole thing in PlayerWalkState')
           self:stop()
           return
         end
