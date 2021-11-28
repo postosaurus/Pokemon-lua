@@ -187,8 +187,8 @@
             "scale": 1.8983,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 186.21924880155925,
-                "y": 241.53189696043825
+                "x": 176.7370805457514,
+                "y": 224.14792182479056
             }
         },
         "tiledMaps/house.tmx#collision": {
@@ -285,15 +285,15 @@
             "scaleInDock": 1
         },
         "tiledMaps/start.tmx": {
-            "scale": 1.2767,
+            "scale": 3.7058,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 217.35724915798545,
-                "y": 174.2774340095559
+                "x": 236.5211290409628,
+                "y": 202.52037346861675
             }
         },
         "tiledMaps/start.tmx#collision": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.9153,
             "scaleInEditor": 1
         },
         "tiledMaps/start.tmx#collision_graphic": {

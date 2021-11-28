@@ -123,3 +123,18 @@ end
 function AddItem(item, amount)
   print(amount .. ' ' ..  item .. ' added to inventory.')
 end
+
+function CreateItem(level, name, x, y, visible, solid)
+  return Gameobject(level, {
+    name = name,
+    type = 'item',
+    mapX = x,
+    mapY = y,
+    visible = visible,
+    solid = solid,
+    onInteract = function()
+      Gameobject.toggle(self)
+    end
+
+  })
+end

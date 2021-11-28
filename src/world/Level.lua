@@ -29,7 +29,7 @@ function Level:generateLayers(def)
     end
   end
 
-
+  self.items = self.layers['grid'].items
 
   return self.objects
 end
@@ -37,6 +37,11 @@ end
 function Level:getTile(x, y, layer)
   local tile = self.layers[layer]:getTile(x, y)
   return tile
+end
+
+function Level:setTile(x, y, layer, value)
+  self.layers[layer]:setTile(x, y, value)
+
 end
 
 function Level:getTilesByType(x, y, type)
@@ -63,13 +68,17 @@ end
 
 function Level:render()
   local renderOrder = {
-    'ground', 'onGround', 'grid', 'player', 'deco', 'fixDeco',
+    'ground', 'onGround',  'player', 'deco', 'fixDeco',
   }
 
   for i =1, #renderOrder do
 
     if renderOrder[i] == 'player' then
+      for i, item in ipairs(self.items) do
+        item:render()
+      end
       self.world.player:render()
+
     else
 
       local layer = self.layers[renderOrder[i]]

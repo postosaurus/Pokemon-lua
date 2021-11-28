@@ -22,9 +22,9 @@ ACTIONS = {
       end
     end,
 
-    ['addItem'] = function(params)
-      local item = params.name
-      local amount = params.amount
+    ['addItem'] = function(name, amount)
+      local item = name
+      local amount = amount
 
       return function(level, entity)
         AddItem(item, amount)
@@ -38,9 +38,9 @@ ACTIONS = {
 
       -- table.foreach(params, print)
       return function(level, entity)
-        entity.canInput = false
+        -- entity.canInput = false
         gStateStack:push(DialogueState(params.text), function()
-          entity.canInput = true
+          -- entity.canInput = true
         end)
         return true
       end
@@ -69,25 +69,29 @@ ACTIONS = {
       end
     end,
 
-    ['changeState'] = function(world, entity, params)
-      -- print('changeStateActions')
-      gStateStack:pop()
-      -- print(params.state)
-      gStateStack:push(GAMESTATES[params.state]())
-      return true
+    ['changeState'] = function(params)
+      return function(level, entity)
+        gStateStack:pop()
+        gStateStack:push(GAMESTATES[params.text]())
+        return true
+      end
     end,
 
     ['push-back'] = function(params)
       local text = params.text
       return function(level, entity)
-        -- entity.canInput = false
-        gStateStack:push(DialogueState(text, function()
-          entity:setToOppositeDirection()
-          entity:changeState('walk')
-          -- entity.canInput = true
-          entity.bumbed = false
-        end))
-        return false
+        if text then
+          gStateStack:push(DialogueState(text, function()
+            entity:setToOppositeDirection()
+            entity:changeState('walk')
+            entity.bumbed = false
+          end))
+        else
+            entity:setToOppositeDirection()
+            entity:changeState('walk')
+            entity.bumbed = false
+          return false
+        end
       end
     end,
 
@@ -95,12 +99,16 @@ ACTIONS = {
       local text = params.text
 
       return function(level, entity)
-        gStateStack:push(DialogueState(text, nil, false))
+        if text then
+          gStateStack:push(DialogueState(text, nil, false))
+        end
         Timer.after(.12, function()
           entity:setToOppositeDirection()
           entity:changeState('walk')
           Timer.after(.7, function()
-            gStateStack:pop()
+            if text then
+              gStateStack:pop()
+            end
           end)
         end)
 
@@ -114,25 +122,27 @@ ACTIONS = {
         entity.direction = direction
         entity:changeState('idle')
         entity:changeAnimation('idle-' .. entity.direction)
-        entity.canInput = false
+        -- entity.canInput = false
         return false
       end
     end,
 
     ['move'] = function(params)
       local direction = params.direction
+      local steps = params.steps or 1
       return function(level, entity)
         entity.canInput = false
 
         Timer.every(.18, function()
           entity.direction = direction
           entity:changeState('walk')
-        end):limit(3)
+        end):limit(steps)
 
-        Timer.after(3*.18, function()
-          love.keyboard.keysPressed = {}
+        Timer.after(steps*.2, function()
+
           entity.canInput = true
         end)
+        love.keyboard.keysPressed = {}
 
       end
 

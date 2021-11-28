@@ -1,26 +1,48 @@
 Gameobject = Class{}
 
-function Gameobject:init(def)
-  -- self.  -- self.level = etCurrentLevel()
-  -- print(self.lev)
-  self.x = def.x
-  self.y = def.y
+function Gameobject:init(level, def)
   self.mapX = def.mapX
   self.mapY = def.mapY
-  -- print(self.mapX, self.mapY)
-  -- self.level.layers['grid'][mapY][mapX] = self
+
+  self.x = math.floor(self.mapX * TILESIZE)
+  self.y = math.floor(self.mapY * TILESIZE)
+
   self.type = def.type
-  self.width = def.width or 16
-  self.height = def.height or 16
+  self.width = def.width or TILESIZE
+  self.height = def.height or TILESIZE
   self.visible = def.visible
 
   self.solid = def.solid
 
-  self.params = def.params
+  self.name = def.name or nil
+  self.amount = def.amount or 1
 
-  self.onEnter = def.onEnter or function() print('__empty__') end
-  self.onExit = def.onExit or function() print('__empty__') end
-  self.onInteract = def.onInteract or function() print('__empty__') end
+  self.onEnter = def.onEnter or function() return ACTIONS['empty'] end
+  self.onExit = def.onExit or function() return ACTIONS['empty'] end
+  self.onInteract = def.onInteract or function() return ACTIONS['empty'] end
+  -- print(self.type)
+  if self.type == 'item' then
+    print('creating the onInteract')
+    self.onInteract = function(item)
+
+      return  function(level, entity)
+
+        gStateStack:push(DialogueState(item.name .. ' found.', function()
+            ACTIONS['addItem'](item.name, item.amount)
+            
+            self:toggle()
+            level:setTile(self.mapX, self.mapY, 'grid', Tile{
+              x = x,
+              y = y,
+              id = id,
+              type = 'tile'
+            })
+
+        end))
+      end
+
+    end
+  end
 end
 
 function Gameobject:update(dt)
@@ -37,18 +59,18 @@ function Gameobject:render()
   -- love.graphics.setColor(1, 0, 0, .5)
   -- love.graphics.rectangle('fill', (self.mapX - 1) * TILESIZE, (self.mapY -1 ) * TILESIZE, self.width, self.height)
   if self.visible then
-    if self.type == 'item' then
+    -- if self.type == 'item' then
       -- print('item')
       love.graphics.draw(gTextures['balls'], gFrames['balls'][1], (self.mapX - 1) * TILESIZE, (self.mapY -1 ) * TILESIZE)
-    end
+    -- end
 
+    --
+    -- love.graphics.draw(
+    -- gTextures[self.texture],
+    -- gFrames[self.texture][self.id],
+    -- math.floor((self.x-1) * TILESIZE),
+    -- math.floor((self.y-1) * TILESIZE))
 
-    love.graphics.draw(
-    gTextures[self.texture],
-    gFrames[self.texture][self.id],
-    math.floor((self.x-1) * TILESIZE),
-    math.floor((self.y-1) * TILESIZE))
-  
 
 
   end

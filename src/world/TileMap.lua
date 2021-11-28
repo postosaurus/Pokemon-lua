@@ -10,6 +10,8 @@ function TileMap:init(def, tilesets)
   self.opacity = def.opacity
 
   self.tilesets = tilesets
+
+  self.items = {}
   self.tiles = self:generateTiles(def.data)
 end
 
@@ -25,7 +27,6 @@ function TileMap:getTilesByType(x, y, type)
 end
 
 function TileMap:getTile(x, y)
-  -- print(x, y)
   return self.tiles[y][x]
 end
 
@@ -59,7 +60,7 @@ function TileMap:generateTiles(tiles)
     listOfTiles[y] = {}
 
     for x = 1, self.width do
-      local visible = false
+      local visible = true
       local type = 'tile'
       local properties = {}
       local trigger = nil
@@ -116,6 +117,15 @@ function TileMap:generateTiles(tiles)
         solid = properties.solid
         trigger = properties.trigger
         action = properties.action
+
+      elseif type == 'item' then
+        print('item in the map')
+        print(type)
+        solid = properties.solid
+        visible = properties.visible
+        table.insert(self.items, CreateItem(self.level, properties.name, x, y, visible, solid))
+
+
       end
 
       listOfTiles[y][x] = Tile({
