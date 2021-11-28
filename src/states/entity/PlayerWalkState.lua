@@ -33,27 +33,42 @@ function PlayerWalkState:attempMove()
     toX = toX - 1
   end
 
-  -- print(toX, toY)
+
+  --checking collision with map border and tiles/objects that are solid
   if toX < 1 or toX > level.tileWidth or toY < 1 or toY > level.tileHeight then
     self:stop()
     return
-
   else
 
     local tile = level:getTile(toX, toY, 'grid')
+    print("\n")
+    -- table.foreach(tile, print)
+    -- table.foreach(tile.properties, print)
+    -- if tile.properties then
+    -- end
+
+    print("\n")
     if tile then
-      if tile.id == 1 then
+      if tile.solid then
         self:stop()
         return
       end
     end
-  end
 
-  for i, object in ipairs(level.objects) do
-    if Collides(self.entity.collider, object) then
-      object:onExit(object.params)(self, self.entity)
-    end
+
+
+  local exitTrigger = level:getTile(self.entity.mapX, self.entity.mapY, 'grid')
+  if exitTrigger then-- and exitTrigger.tigger then
+
+      local contine = exitTrigger:onExit(exitTrigger.properties)(self, self.entity)
+      if not contine then
+        self:stop()
+        self.entity.canInput = false
+        return
+      end
   end
+end
+
 
 
   -- print(toX, toY)
@@ -72,20 +87,28 @@ function PlayerWalkState:attempMove()
     self.entity:setCollider(self.entity.direction)
 
 
-    for i, object in ipairs(level.objects) do
-      if Collides(self.entity.collider, object) then
+    local enterTriger = level:getTile(self.entity.mapX, self.entity.mapY, 'grid')
+    if enterTriger then
+      if enterTriger.solid then
+        self:stop()
+        return
+      end
 
-        local continue = object:onEnter(object.params)(self, self.entity)
-        print(continue)
+      if enterTriger.trigger then
+
+        local continue = enterTriger:onEnter(enterTriger.properties)(self, self.entity)
+
         if not continue then
-          self:stop()
-          return
+          self.entity.canInput = false
+
         end
       end
     end
 
+
     print('checking new input in Playerwalk after everything')
     if not self.entity.canInput then
+      self:stop()
       return
     end
 

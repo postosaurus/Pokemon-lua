@@ -1,5 +1,12 @@
 ACTIONS = {
 
+    ['empty'] = function(params)
+      return function(level, entity)
+        print('empty callback function')
+        return true
+      end
+    end,
+
     ['teleport'] = function(params)
       local x = params.x
       local y = params.y
@@ -21,14 +28,20 @@ ACTIONS = {
 
       return function(level, entity)
         AddItem(item, amount)
-      return false
+      return true
       end
     end,
 
     ['say'] = function(params)
-      local text = params.text
+      -- local text = params.text
+      -- print(params.text)
+
+      -- table.foreach(params, print)
       return function(level, entity)
-        gStateStack:push(DialogueState(text))
+        entity.canInput = false
+        gStateStack:push(DialogueState(params.text), function()
+          entity.canInput = true
+        end)
         return true
       end
     end,
@@ -67,9 +80,11 @@ ACTIONS = {
     ['push-back'] = function(params)
       local text = params.text
       return function(level, entity)
+        -- entity.canInput = false
         gStateStack:push(DialogueState(text, function()
           entity:setToOppositeDirection()
           entity:changeState('walk')
+          -- entity.canInput = true
           entity.bumbed = false
         end))
         return false

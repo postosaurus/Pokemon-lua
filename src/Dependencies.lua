@@ -66,7 +66,7 @@ gTextures = {
   --TileMap
   ['sheet'] = love.graphics.newImage('graphics/sheet.png'),
   ['tilemap'] = love.graphics.newImage('graphics/tilemap.png'),
-  ['collision'] = love.graphics.newImage('graphics/collision_graphic.png'),
+  ['collision'] = love.graphics.newImage('graphics/collision.png'),
   ['interior'] = love.graphics.newImage('graphics/interior.png'),
   ['living-room'] = love.graphics.newImage('graphics/living-room.png'),
 

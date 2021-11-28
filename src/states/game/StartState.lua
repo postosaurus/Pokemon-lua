@@ -35,14 +35,14 @@ function StartState:triggerMenu()
       onSelect = function()
         gStateStack:pop()
         -- gStateStack:pop()
-        -- gStateStack:push(FadeInState({0, 0, 0}, .63, function()
+        gStateStack:push(FadeInState({0, 0, 0}, .63, function()
 
           gStateStack:push(PlayState())
-          -- gStateStack:push(FadeOutState({1, 1, 1}, .63, function()
+          gStateStack:push(FadeOutState({1, 1, 1}, .63, function()
 
 
-        --   end))
-        -- end))
+          end))
+        end))
       end
     },
     {

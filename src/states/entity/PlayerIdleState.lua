@@ -23,15 +23,20 @@ function PlayerIdleState:handleInput()
     self.entity:changeState('walk')
 
   elseif love.keyboard.wasPressed('space') then
+    local adjX, adjY = self.entity:getAdjacentTile()
 
-    for i, object in ipairs(self.world:getCurrentLevel().objects) do
+    tile = self.world:getCurrentLevel():getTile(adjX, adjY, 'grid')
+    if tile then
 
-        if Collides(self.entity.collider, object) then
-          object:onInteract(object.params)(self.world:getCurrentLevel(), self.entity)
-        end
+      print(tile.type)
+      -- if  tile.trigger then
+      --   table.foreach(tile, print)
+        tile:onInteract(tile.properties)(self.world:getCurrentLevel(), self.entity)
 
+      -- end
     end
   end
+
 end
 
 function PlayerIdleState:update(dt)

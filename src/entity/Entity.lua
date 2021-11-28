@@ -76,6 +76,25 @@ function Entity:setToOppositeDirection()
 
 end
 
+function Entity:getAdjacentTile()
+  local adjX = 0
+  local adjY = 0
+
+  if self.direction == 'up' then
+    adjY = -1
+  elseif self.direction == 'down' then
+    adjY = 1
+  elseif self.direction == 'right' then
+    adjX = 1
+  elseif self.direction == 'left' then
+    adjX = -1
+  end
+
+  adjX = self.mapX + adjX
+  adjY = self.mapY + adjY
+  return adjX, adjY
+end
+
 function Entity:changeState(name)
   self.controller:change(name)
 end
@@ -118,5 +137,5 @@ function Entity:render()
   self.controller:render()
   -- love.graphics.rectangle('line', self.x+self.offsetX, self.y+self.offsetY, self.width, self.height)
   love.graphics.rectangle('line', self.collider.x, self.collider.y, self.collider.width, self.collider.height)
-  love.graphics.rectangle('line', self.x, self.y, self.width, self.height)
+  -- love.graphics.rectangle('line', self.x, self.y, self.width, self.height)
 end

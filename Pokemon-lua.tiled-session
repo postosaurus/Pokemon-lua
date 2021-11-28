@@ -7,9 +7,9 @@
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         "tiledMaps",
-        "/home/posty",
         "/home/posty/Dokumente/Projects/tiledMaps",
         "tiledMaps/rules",
+        "/home/posty",
         "/home/posty/Dokumente/Projects/pok/src/world/levels"
     ],
     "file.lastUsedOpenFilter": "Alle Dateien (*)",
@@ -142,10 +142,10 @@
         },
         "tiledMaps/fixes-tree-rules.tmx": {
             "scale": 5.1747,
-            "selectedLayer": 5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 255.86024310588056,
-                "y": 255.9568670647574
+                "x": 52.08031383461844,
+                "y": 29.85680329294452
             }
         },
         "tiledMaps/fixes-tree-rules.tmx#collision": {
@@ -156,9 +156,9 @@
         },
         "tiledMaps/grass-rules.tmx": {
             "scale": 11.340625,
-            "selectedLayer": 0,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 23.984568751722243,
+                "x": 24.02865803251585,
                 "y": 23.940479470928633
             }
         },
@@ -172,22 +172,23 @@
             "scale": 3.6871875,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 79.7355708110857,
+                "x": 79.59996609882195,
                 "y": 79.59996609882194
             }
         },
         "tiledMaps/house-rules.tmx#collision": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "tiledMaps/house-rules.tmx#tilemap": {
             "scaleInDock": 1
         },
         "tiledMaps/house.tmx": {
-            "scale": 3.1205,
-            "selectedLayer": 3,
+            "scale": 1.8983,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 175.93334401538218,
-                "y": 167.76157667040542
+                "x": 186.21924880155925,
+                "y": 241.53189696043825
             }
         },
         "tiledMaps/house.tmx#collision": {
@@ -284,28 +285,30 @@
             "scaleInDock": 1
         },
         "tiledMaps/start.tmx": {
-            "scale": 5.8989,
-            "selectedLayer": 5,
+            "scale": 1.2767,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 145.4508467680415,
-                "y": 177.0669107799759
+                "x": 217.35724915798545,
+                "y": 174.2774340095559
             }
         },
         "tiledMaps/start.tmx#collision": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "tiledMaps/start.tmx#collision_graphic": {
             "scaleInDock": 1
         },
         "tiledMaps/start.tmx#tilemap": {
-            "scaleInDock": 1.7824
+            "scaleInDock": 1.7824,
+            "scaleInEditor": 1
         },
         "tiledMaps/tree-rules.tmx": {
             "scale": 3.2256,
-            "selectedLayer": 2,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 295.7589285714286,
-                "y": 335.906498015873
+                "x": 476.96552579365084,
+                "y": 29.296875
             }
         },
         "tiledMaps/tree-rules.tmx#collision": {
@@ -326,18 +329,17 @@
         "tiledMaps/grass-rules.tmx",
         "tiledMaps/tree-rules.tmx",
         "tiledMaps/fixes-tree-rules.tmx",
-        "tiledMaps/start.tmx",
-        "tiledMaps/house.tmx"
+        "tiledMaps/start.tmx"
     ],
     "project": "Pokemon-lua.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "tiledMaps/start.tmx",
         "tiledMaps/house.tmx",
         "tiledMaps/house-rules.tmx",
         "tiledMaps/grass-rules.tmx",
         "tiledMaps/tree-rules.tmx",
         "tiledMaps/fixes-tree-rules.tmx",
+        "tiledMaps/start.tmx",
         "tiledMaps/rules-house.tmx",
         "tiledMaps/rules-grass.tmx",
         "tiledMaps/rules-trees.tmx",

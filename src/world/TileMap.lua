@@ -5,8 +5,8 @@ function TileMap:init(def, tilesets)
   self.id = def.id
   self.width = def.width
   self.height = def.height
-  self.visible = def.visible or true
 
+  self.visible = def.visible or true
   self.opacity = def.opacity
 
   self.tilesets = tilesets
@@ -24,99 +24,117 @@ function TileMap:getTilesByType(x, y, type)
   return listOfTiles
 end
 
-function TileMap:generateTiles(def)
-  local listOfTiles = {}
-  local onEnter = function() end
-  local onExit = function() end
-  local onInteract = function() end
-
-  for y = 1, self.height do
-    listOfTiles[y] = {}
-      for x = 1, self.width do
-
-          local id = def[1 + (x -1) + (y - 1) * self.width]
-          if not id or id == 0 then
-              listOfTiles[y][x] = Tile({
-                x = x,
-                y = y,
-                id = 0,
-                type =  nil,
-                texture = 'tiles',
-                animation = nil})
-              goto continue
-          end
-
-          local tset_gid = -1
-          local texture = nil
-          local type = nil
-          for t = #self.tilesets, 1, -1  do
-              if self.tilesets[t]['firstgid'] <= id then
-                  tset_gid = self.tilesets[t]['firstgid']
-                  texture = self.tilesets[t]['name']
-                  for i, tileData in pairs(self.tilesets[t]['tiles']) do
-                      if tileData['id'] == id - tset_gid + 1 then
-                          type = tileData['type']
-
-                          if type == 'readable' then
-                            -- onInteract = def[id].properties['text']
-                          elseif type == 'door' then
-                            -- onEnter = def[id].onEnter
-                          elseif type == 'solid' then
-                            -- print('solid type found')
-                          end
-
-
-                          break
-                      end
-                  end
-                  break
-              else
-                type = def.type
-              end
-          end
-
-          if tset_gid == -1 then
-              goto continue
-          end
-
-          id = id - tset_gid  + 1
-          -- print(type)
-
-          listOfTiles[y][x] = Tile({
-            x = x,
-            y = y,
-            id = id,
-            type = type,
-            texture = texture,
-            onEnter = onEnter,
-            onExit = onExit,
-            onInteract = onInteract,
-            animation = nil})
-
-          ::continue::
-      end
-  end
-  return listOfTiles
-end
-
 function TileMap:getTile(x, y)
+  -- print(x, y)
   return self.tiles[y][x]
 end
 
+function TileMap:setTile(x, y, v)
+  self.tiles[y][x] = v
+end
+
 function TileMap:render()
-  if self.visible then
+  -- if self.visible then
     for y = 1, self.height do
       for x = 1, self.width do
         local tile = self:getTile(x, y)
         if tile and tile.id ~= 0 then
-          if tile.type == 'solid' then
-            love.graphics.setColor(0,0,0,1)
-          end
+
           tile:render()
-          love.graphics.setColor(1,1,1,1)
+
 
         end
       end
     end
+  -- end
+end
+
+
+function TileMap:generateTiles(tiles)
+  local listOfTiles = {}
+
+
+
+  for y = 1, self.height do
+    listOfTiles[y] = {}
+
+    for x = 1, self.width do
+      local visible = false
+      local type = 'tile'
+      local properties = {}
+      local trigger = nil
+      local action = nil
+      local solid = false
+      local onEnter = ACTIONS['empty']
+      local onExit = ACTIONS['empty']
+      local onInteract= ACTIONS['empty']
+
+      local id = tiles[x + (y - 1) * self.width]
+      if not id or id == 0 then
+        listOfTiles[y][x] = Tile{
+          x = x,
+          y = y,
+          id = id,
+          type = 'tile'
+        }
+        goto continue
+      end
+
+      local texture = nil
+      local tset_gid = -1
+      local type = nil
+
+      for t = #self.tilesets, 1, -1 do
+        if self.tilesets[t].firstgid <= id then
+            tset_gid = self.tilesets[t].firstgid
+            texture = self.tilesets[t].name
+            for i, tileData in ipairs (self.tilesets[t]['tiles']) do
+              if tileData['id'] == id - tset_gid  then
+                type = tileData['type'] or 'tile'
+                properties = tileData['properties'] or {}
+                break
+              end
+            end
+            break
+          end
+      end
+
+      if tset_gid == -1 then
+        goto continue
+      end
+
+      id = id -tset_gid + 1
+
+      if type == 'solid' then
+        visible = properties.visible
+        solid = true
+        action = properties.action
+        trigger = properties.trigger
+
+      elseif type == 'trigger' then
+        visible = properties.visible
+        solid = properties.solid
+        trigger = properties.trigger
+        action = properties.action
+      end
+
+      listOfTiles[y][x] = Tile({
+        x = x,
+        y = y,
+        id = id,
+        type = type,
+        texture = texture,
+        visible = visible,
+        properties = properties,
+        trigger = trigger,
+        action = action,
+        solid = solid,
+        onEnter = onEnter,
+        onExit = onExit,
+        onInteract, onInteract
+      })
+      ::continue::
+    end
   end
+  return listOfTiles
 end

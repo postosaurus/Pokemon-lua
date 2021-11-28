@@ -31,6 +31,8 @@ function World:getCurrentLevel()
   return self.currentLevel
 end
 
+
+
 function World:changeLevel(name, def)
   assert(self.levels[name])
   self.currentLevel = self.levels[name]
