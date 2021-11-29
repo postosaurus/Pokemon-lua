@@ -5,7 +5,7 @@ function PlayState:init()
 end
 
 function PlayState:enter()
-
+  love.keyboard.keysPressed = {}
 end
 
 function PlayState:handleInput()

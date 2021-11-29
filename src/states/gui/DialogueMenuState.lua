@@ -10,7 +10,11 @@ function DialogueMenuState:init(text, subMenu, def)
     x = VIRTUAL_WIDTH - 64 + offsetX, y = VIRTUAL_HEIGHT - 96 + offsetY,
     items = subMenu,
     closeOnSelect = true,
+    rows = def.rows, maxRows = def.maxRows,
+    width = def.width, height = def.height
   })
+
+  self.onExit = onExit or function() end
 end
 
 function DialogueMenuState:handleInput()

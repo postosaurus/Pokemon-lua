@@ -5,7 +5,6 @@ function Player:init(world, def)
   Inventory.init(self, {
     {name = 'pokeball', amount = 5},
     {name = 'potion', amount = 5},
-    {name = 'map', amount = 5}
   })
 
 end

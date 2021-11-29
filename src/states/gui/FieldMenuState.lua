@@ -44,6 +44,7 @@ function FieldMenuState:enter()
 end
 
 function FieldMenuState:exit()
+  love.keyboard.keysPressed = {}
   if not self.canInput then
 
   end

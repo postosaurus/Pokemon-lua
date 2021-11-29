@@ -15,23 +15,38 @@ function InventoryMenuState:init(world)
           return ITEMS[item.name]:onUse()
         end})
 
-      if ITEMS[item.name].type ~= 'keyItem' then
-        table.insert(subMenuState,{
-          text = 'Throw',
-          onSelect = function()
-            self.world.player:removeItem(item.name, 1)
-            gStateStack:push(DialogueState(ITEMS[item.name].text ..' removed from your inventory.', function()
-              gStateStack:pop()
-              gStateStack:push(InventoryMenuState(self.world))
-            end))
-          end
-        })
-      end
-
+    if ITEMS[item.name].type ~= 'keyItem' then
       table.insert(subMenuState,{
-        text = 'Cancel',
-        onSelect = function() gStateStack:pop() end
-      })
+        text = 'Throw',
+        onSelect = function()
+
+          local counterMenu = {}
+          for i = 1, item.amount do
+          table.insert(counterMenu, {text = i,
+            onSelect = function()
+              self.world.player:removeItem(item.name, i)
+              gStateStack:pop()
+              gStateStack:pop()
+              gStateStack:push(DialogueState(ITEMS[item.name].text ..' removed from your inventory.', function()
+                gStateStack:pop()
+                gStateStack:push(InventoryMenuState(self.world))
+              end))
+            end
+            })
+          end
+          table.insert(counterMenu, {
+            text = 'Cancel',
+            onSelect = function() gStateStack:pop() end
+          })
+
+          gStateStack:push(DialogueMenuState('', counterMenu, {rows = 1, maxRows = item.amount, width = 32, height = 32}))
+        end})
+    end
+
+    table.insert(subMenuState,{
+      text = 'Cancel',
+      onSelect = function() gStateStack:pop() end
+    })
 
     items[i] = {
       text = ITEMS[item.name].text .. ' '.. tostring(item.amount),

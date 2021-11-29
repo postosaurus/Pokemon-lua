@@ -8,9 +8,9 @@
     "expandedProjectPaths": [
         "tiledMaps",
         "/home/posty/Dokumente/Projects/tiledMaps",
+        "/home/posty/Dokumente/Projects/pok/src/world/levels",
         "tiledMaps/rules",
-        "/home/posty",
-        "/home/posty/Dokumente/Projects/pok/src/world/levels"
+        "/home/posty"
     ],
     "file.lastUsedOpenFilter": "Alle Dateien (*)",
     "fileStates": {
@@ -288,8 +288,8 @@
             "scale": 3.7058,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 236.5211290409628,
-                "y": 202.52037346861675
+                "x": 242.99746343569538,
+                "y": 237.33067084030438
             }
         },
         "tiledMaps/start.tmx#collision": {
@@ -329,16 +329,17 @@
         "tiledMaps/grass-rules.tmx",
         "tiledMaps/tree-rules.tmx",
         "tiledMaps/fixes-tree-rules.tmx",
-        "tiledMaps/start.tmx"
+        "tiledMaps/start.tmx",
+        "tiledMaps/house.tmx"
     ],
     "project": "Pokemon-lua.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "tiledMaps/house.tmx",
         "tiledMaps/house-rules.tmx",
         "tiledMaps/grass-rules.tmx",
         "tiledMaps/tree-rules.tmx",
         "tiledMaps/fixes-tree-rules.tmx",
+        "tiledMaps/house.tmx",
         "tiledMaps/start.tmx",
         "tiledMaps/rules-house.tmx",
         "tiledMaps/rules-grass.tmx",

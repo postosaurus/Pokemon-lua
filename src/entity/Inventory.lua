@@ -8,13 +8,15 @@ end
 
 function Inventory:addItem(name, amount)
   for i, item in ipairs(self.inventory) do
+    print(i, item.name, item.amount, name, amount)
+
 
     if item.name == name then
-      item.amount = item.amount + amount
-      break
+      self.inventory[i] ={name = name, amount = item.amount + amount}
+      return
     end
-    table.insert(self.inventory, {name = name, amount = amount})
   end
+  table.insert(self.inventory, {name = name, amount = amount})
 end
 
 function Inventory:removeItem(name, amount)
@@ -28,4 +30,16 @@ function Inventory:removeItem(name, amount)
 
     end
   end
+end
+
+function Inventory:hasItem(name, amount)
+  local amount = amount or 1
+
+  for i, item in ipais(self.inventory) do
+    if item.name == name and item.amount >= amount then
+      return true
+    end
+  end
+
+  return
 end
