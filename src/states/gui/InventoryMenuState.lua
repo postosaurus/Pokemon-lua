@@ -12,7 +12,16 @@ function InventoryMenuState:init(world)
     table.insert(subMenuState,{
         text = 'Use',
         onSelect = function()
-          return ITEMS[item.name]:onUse()
+          if not ITEMS[item.name].onUse then
+            gStateStack:push(DialogueState('You can\'t use this here.', function()
+              gStateStack:pop()
+            end))
+            return
+          end
+
+          ITEMS[item.name].onUse(self.world, item)
+
+
         end})
 
     if ITEMS[item.name].type ~= 'keyItem' then

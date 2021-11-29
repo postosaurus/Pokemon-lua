@@ -5,6 +5,12 @@ function FieldMenuState:init(world)
   self.menu = Menu({
     x = VIRTUAL_WIDTH - 100, y = 10, rows = 10, maxRows = 7, items = {
       {
+        text = 'Pokemon',
+        onSelect = function()
+          gStateStack:push(PartyMenuState(self.world))
+        end
+      },
+      {
         text = 'Inventory',
         onSelect = function()
           gStateStack:push(InventoryMenuState(self.world))

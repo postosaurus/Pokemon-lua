@@ -6,7 +6,7 @@ function Player:init(world, def)
     {name = 'pokeball', amount = 5},
     {name = 'potion', amount = 5},
   })
-
+  Party.init(self)
 end
 
 function Player:addItem(name, amount)

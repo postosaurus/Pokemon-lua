@@ -48,7 +48,7 @@ ITEMS = {
           interval = 1
         }
     },
-    onUse = function() gStateStack:push(DialogueState('You can\'t use this here!')) end,
+    onUse = nil,
     onBattleUse = function() Pop() BattleMessage('A Pokeball!') end,
   },
   ['map'] = {
@@ -86,12 +86,31 @@ ITEMS = {
         looping = false}
     },
 
-    onUse = function(world) gStateStack:push(PartyMenu(world, true, 'potion', false,
-      function()
-      end))
+    onUse = function(world, item)
+      -- return function (pokemon)
+        print('im am here item_defs onUSe')
+        Heal(world, item, 20)
+      -- end
+        -- gStateStack:pop()
+        -- gStateStack:push(PartyMenuState(world,
+        --   function(pokemon)
+        --
+        --     gStateStack:push(DialogueState('Somehhing happedn',
+        --     function()
+        --       gStateStack:pop()
+        --       Heal(20, pokemon)
+        --       world.player:removeItem(item.name, 1)
+        --       -- return true
+        --       gStateStack:pop()
+        --       gStateStack:push(InventoryMenuState(world))
+        --     end))
+        --
+        --   end))
+
+
     end,
     onConsume = function(pokemon, amount) Heal(pokemon, amount) end,
-    onBattleUse = function(world, battlestate) gStateStack:push(PartyMenu(world, true, 'potion', battlestate,
+    onBattleUse = function(world, battlestate) gStateStack:push(PartyMenuState(world, true, 'potion', battlestate,
       function()
       end)) end,
 

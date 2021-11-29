@@ -72,8 +72,26 @@ function Ask(question, items, onDialogueClose, font)
     }))
 end
 
-function Heal(pokemon, amount)
-  gWorld.player.party:HealPokemon(pokemon, amount)
+function Heal(world, item, amount)
+  -- return function(pokemon)
+    gStateStack:pop()
+    gStateStack:push(PartyMenuState(world,
+      function(pokemon)
+
+
+        gStateStack:push(DialogueState('Somehhing happedn',
+        function()
+
+          gStateStack:pop()
+          pokemon:heal(amount)
+          world.player:removeItem(item.name, 1)
+          -- return true
+          gStateStack:pop()
+          gStateStack:push(InventoryMenuState(world))
+        end))
+
+      end))
+  -- end
 end
 
 function Wait(waitTime, onDoneWaiting)

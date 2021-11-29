@@ -99,6 +99,7 @@ gFonts = {
   require 'src/Animation'
   require 'src/Camera'
   require 'src/Actions'
+  require 'src/Pokemon'
 
   require 'src/states/game/StartState'
   require 'src/states/game/PlayState'
@@ -111,6 +112,7 @@ gFonts = {
   require 'src/states/gui/DialogueMenuState'
   require 'src/states/gui/FieldMenuState' --The menu on the field(Press enter)
   require 'src/states/gui/InventoryMenuState' -- The Inventory menu on fieldmenu
+  require 'src/states/gui/PartyMenuState'  -- The menu to view the Party on fieldmenu
   --
   require 'src/states/entity/EntityBaseState'
   require 'src/states/entity/EntityIdleState'
@@ -128,6 +130,7 @@ gFonts = {
   require 'src/entity/Entity'
   require 'src/entity/Player'
   require 'src/entity/Inventory'
+  require 'src/entity/Party'
   require 'src/entity/entity_defs'
 
   require 'src/world/level_defs'
@@ -136,8 +139,8 @@ gFonts = {
   require 'src/world/TileMap'
   require 'src/world/Tile'
   require 'src/world/Gameobject'
--- require 'src/Pokemon'
--- require 'src/Party'
+
+
 -- require 'src/Item'
 -- require 'src/Door'
 -- require 'src/StoryboardState'
@@ -146,7 +149,7 @@ gFonts = {
 --
 -- require 'src/states/menus/MenuState'  --Base Menu state
 -- require 'src/states/menus/DialogueMenuState' -- A Menu with a textbox
--- require 'src/states/menus/PartyMenu'  -- The menu to view the Party on fieldmenu
+
 
 -- require 'src/states/menus/ItemMenuState'
 --

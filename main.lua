@@ -1,5 +1,7 @@
 require 'src/Dependencies'
 
+math.randomseed(os.time())
+
 function love.load()
     --setting graphics and window, initialzing push for having good arcade game resolutuon
     love.graphics.setDefaultFilter('nearest', 'linear')
