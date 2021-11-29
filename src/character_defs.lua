@@ -1,3 +1,8 @@
+CHARACTER_STATES = {
+  ['idle'] = function(world, entity) return EntityIdleState(world, entity) end,
+  ['walk'] = function(world, entity) return EntityWalkState(world, entity) end,
+}
+
 CHARACTER_DEFS = {
   ['empty'] = {
     name = 'empty',
@@ -8,8 +13,10 @@ CHARACTER_DEFS = {
     states = {'idle'},
     state = 'idle',
     onInteract =
-      function()
-        Say('I am Empty')
+      function(npc)
+        return function(level, entity)
+          gStateStack:push(DialogueState('I am Empty'))
+        end
       end
     },
     ['healer'] = {
@@ -20,39 +27,16 @@ CHARACTER_DEFS = {
       states = {'idle', 'walk'},
       state = 'idle',
       AI = 'walk-around',
-      canMove = true,
+      canInput = true,
       onInteract =
-        function()
-          Say('Your Pokemon looks tired. You should let it rest from time to time.',
-          function()
-            Ask(
-              'Do you want to heal your Pokemon?',
-              {
-                 {text = 'Yes',
-                  onSelect = function()
-                    gStateStack:pop()
-                    Heal()
-                    -- self.player.party.pokemon[1].currentHP = self.player.party.pokemon[1].HP
-                    gStateStack:push(FadeOutState({r=1,b=1,g=1},.3,
-                    function()
-
-                      gStateStack:push(FadeInState({r=1,b=1,g=1},.3,
-                      function()
-                        Say('Much better')
-                      end))
-                    end))
-                  end},
-                 {text = 'No',
-                  onSelect =
-                    function()
-                      gStateStack:pop()
-                      Say('So there you go...')
-                    end
-                  }
-              }
-            )
-          end)
+      function(npc)
+        return function(level, entity)
+          npc.direction = npc:oppositeDirection(entity.direction)
+          npc:changeAnimation('idle-' .. npc.direction)
+          gStateStack:push(DialogueState('I am Empty'))
+          AddItem('potion', 1, entity)
         end
+      end
       },
     ['susi'] = {
       name = 'susi',
@@ -62,9 +46,9 @@ CHARACTER_DEFS = {
       states = {'idle', 'walk'},
       state = 'idle',
       AI = 'walk-around',
-      canMove = true,
+      canInput = true,
       onInteract = function()
-        Say('Hello my name is Susi.')
+        gStateStack:push(DialogueState('Hello my name is Susi.'))
       end
     }
 

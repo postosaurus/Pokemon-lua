@@ -6,5 +6,5 @@ function EntityIdleState:init(world, entity)
 end
 
 function EntityIdleState:enter()
-  self.entity:changeAnimation('idle-'..self.entity.direction)
+  -- self.entity:changeAnimation('idle-'..self.entity.direction)
 end

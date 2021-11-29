@@ -16,6 +16,11 @@ function Entity:init(world, def)
 
   self:generateAnimations(def.animations)
   self.canInput = true
+
+  self.onInteract = def.onInteract or ACTIONS['empty']
+
+
+  return self -- so we can create NPCs dynamicly
 end
 
 function Entity:setPosition(x, y)
@@ -73,7 +78,20 @@ function Entity:setToOppositeDirection()
   elseif self.direction == 'left' then
     self.direction = 'right'
   end
+end
 
+function Entity:oppositeDirection(direction)
+  local opposite
+  if direction == 'up' then
+    opposite = 'down'
+  elseif direction == 'down' then
+    opposite = 'up'
+  elseif direction == 'right' then
+    opposite = 'left'
+  elseif direction == 'left' then
+    opposite = 'right'
+  end
+  return opposite
 end
 
 function Entity:getAdjacentTile()

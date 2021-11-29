@@ -120,8 +120,9 @@ function Teleport(entity, level)
   entity:setPosition(entity.mapX, entity.mapY)
 end
 
-function AddItem(item, amount)
+function AddItem(item, amount, entity)
   print(amount .. ' ' ..  item .. ' added to inventory.')
+  entity:addItem(item, amount)
 end
 
 function CreateItem(level, name, x, y, visible, solid)
@@ -139,7 +140,23 @@ function CreateItem(level, name, x, y, visible, solid)
   })
 end
 
-function CreateNPC(characterName, x, y)
-  
+function CreateNPC(world, characterName, x, y)
+  print('we create an NPC now :)')
+  local characterDef = table.copy(CHARACTER_DEFS[characterName])
+  characterDef.mapX = x
+  characterDef.mapY = y
 
+  local npc = Entity:init(world, characterDef)
+
+
+  npc.controller = StateMachine()
+  for i, state in ipairs(characterDef.states) do
+    world = world
+    npc = npc
+    npc.controller.states[state] = function() return CHARACTER_STATES[state](world, npc) end
+  end
+  npc:changeState(characterDef.state)
+  npc:changeAnimation('idle-down')
+
+  return npc
 end

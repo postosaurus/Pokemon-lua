@@ -30,7 +30,7 @@ function Gameobject:init(level, def)
       return  function(level, entity)
 
         gStateStack:push(DialogueState(ITEMS[item.name].text .. ' found!', function()
-            entity:addItem(item.name, item.amount)
+            AddItem(item.name, item.amount, entity)
             -- table.remove(level.it)
             for i, listedItem in ipairs(level.items) do
               if listedItem == item then

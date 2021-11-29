@@ -12,6 +12,7 @@ function Level:init(world, def)
   self.tilesets = def.tilesets
 
   self.items = {}
+  self.npcs = {}
   self:generateLayers(def.layers)
 
 end
@@ -26,13 +27,15 @@ function Level:generateLayers(def)
   for k, layer in ipairs(def) do
 
     if layer.type == 'tilelayer' then
-      self.layers[layer.name] = TileMap(layer, self.tilesets)
+      self.layers[layer.name] = TileMap(world, layer, self.tilesets)
+
     end
   end
 
   self.items = self.layers['grid'].items
+  self.npcs = self.layers['grid'].npcs
 
-  return self.objects
+  return
 end
 
 function Level:getTile(x, y, layer)
@@ -64,6 +67,9 @@ function Level:freeSpaceOnGrid(x, y)
 end
 
 function Level:update(dt)
+  for i, npc in ipairs(self.npcs) do
+    npc:update(dt)
+  end
   return false
 end
 
@@ -77,6 +83,9 @@ function Level:render()
     if renderOrder[i] == 'player' then
       for i, item in ipairs(self.items) do
         item:render()
+      end
+      for i, npc in ipairs(self.npcs) do
+        npc:render()
       end
       self.world.player:render()
 

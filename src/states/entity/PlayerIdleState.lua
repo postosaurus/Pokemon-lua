@@ -33,10 +33,16 @@ function PlayerIdleState:handleInput()
       end
 
       for i, item in ipairs(self.world:getCurrentLevel().items) do
-        -- print('checking items')
         if adjX == item.mapX and adjY == item.mapY then
           print('found item')
           item:onInteract(item)(self.world:getCurrentLevel(), self.entity)
+        end
+      end
+
+      for i, npc in ipairs(self.world:getCurrentLevel().npcs) do
+        if adjX == npc.mapX and adjY == npc.mapY then
+          print('found npc')
+          npc:onInteract(npc)(self.world:getCurrentLevel(), self.entity)
         end
       end
     end

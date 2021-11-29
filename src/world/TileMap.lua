@@ -1,6 +1,7 @@
 TileMap = Class{}
 
-function TileMap:init(def, tilesets)
+function TileMap:init(world, def, tilesets)
+  self.world = world
   self.name = def.name
   self.id = def.id
   self.width = def.width
@@ -12,6 +13,7 @@ function TileMap:init(def, tilesets)
   self.tilesets = tilesets
 
   self.items = {}
+  self.npcs = {}
   self.tiles = self:generateTiles(def.data)
 end
 
@@ -124,7 +126,11 @@ function TileMap:generateTiles(tiles)
         solid = properties.solid
         visible = properties.visible
         table.insert(self.items, CreateItem(self.level, properties.name, x, y, visible, solid))
-        
+
+      elseif type == 'npc' then
+        print('npc in the map')
+        solid = true
+        table.insert(self.npcs, CreateNPC(world, properties.character, x, y))
 
       end
 
