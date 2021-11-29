@@ -124,7 +124,7 @@ function TileMap:generateTiles(tiles)
         solid = properties.solid
         visible = properties.visible
         table.insert(self.items, CreateItem(self.level, properties.name, x, y, visible, solid))
-
+        
 
       end
 

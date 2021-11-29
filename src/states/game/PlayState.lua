@@ -9,12 +9,10 @@ function PlayState:enter()
 end
 
 function PlayState:handleInput()
+  if love.keyboard.wasPressed('return') or love.keyboard.wasPressed('enter') then
+    gStateStack:push(FieldMenuState(self.world))
+  end
   self.world:handleInput()
-  -- if love.keyboard.wasPressed('up') then
-  --   ACTIONS['move']('up', self.world.player)
-  -- elseif love.keyboard.wasPressed('down') then
-  --   ACTIONS['move']('down', self.world.player)
-  -- end
 end
 
 function PlayState:update(dt)

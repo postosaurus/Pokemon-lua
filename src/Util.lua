@@ -138,3 +138,8 @@ function CreateItem(level, name, x, y, visible, solid)
 
   })
 end
+
+function CreateNPC(characterName, x, y)
+  
+
+end

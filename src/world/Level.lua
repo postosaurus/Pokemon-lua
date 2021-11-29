@@ -10,7 +10,8 @@ function Level:init(world, def)
   self.pixelHeight = self.tileHeight * TILESIZE
 
   self.tilesets = def.tilesets
-  -- self.grid = {}
+
+  self.items = {}
   self:generateLayers(def.layers)
 
 end

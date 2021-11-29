@@ -4,6 +4,8 @@ function Gameobject:init(level, def)
   self.mapX = def.mapX
   self.mapY = def.mapY
 
+
+
   self.x = math.floor(self.mapX * TILESIZE)
   self.y = math.floor(self.mapY * TILESIZE)
 
@@ -23,13 +25,20 @@ function Gameobject:init(level, def)
   -- print(self.type)
   if self.type == 'item' then
     print('creating the onInteract')
-    self.onInteract = function(item)
+    self.onInteract = function(item ,index)
 
       return  function(level, entity)
 
-        gStateStack:push(DialogueState(item.name .. ' found.', function()
-            ACTIONS['addItem'](item.name, item.amount)
-            
+        gStateStack:push(DialogueState(ITEMS[item.name].text .. ' found!', function()
+            entity:addItem(item.name, item.amount)
+            -- table.remove(level.it)
+            for i, listedItem in ipairs(level.items) do
+              if listedItem == item then
+                print('matching')
+                table.remove(level.items, i)
+                break
+              end
+            end
             self:toggle()
             level:setTile(self.mapX, self.mapY, 'grid', Tile{
               x = x,

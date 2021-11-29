@@ -14,7 +14,7 @@ function World:init()
   end
   self.currentLevel = self:changeLevel('start')
 
-  self.player = Entity(self, ENTITY_DEFS['player'])
+  self.player = Player(self, ENTITY_DEFS['player'])
   self.player.controller = StateMachine({
     ['idle'] = function() return PlayerIdleState(self, self.player) end,
     ['walk'] = function() return PlayerWalkState(self, self.player) end,

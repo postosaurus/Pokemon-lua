@@ -1,6 +1,6 @@
 local ballsTexture = 'balls'
 local ballOnInteract = function() Say('an item') end
-ITEM_DEFS = {
+ITEMS = {
   ['empty'] = {
     name = 'empty',
     width = TILESIZE,
@@ -48,7 +48,7 @@ ITEM_DEFS = {
           interval = 1
         }
     },
-    onUse = function() Say('You can\'t use this here!') end,
+    onUse = function() gStateStack:push(DialogueState('You can\'t use this here!')) end,
     onBattleUse = function() Pop() BattleMessage('A Pokeball!') end,
   },
   ['map'] = {
@@ -65,7 +65,7 @@ ITEM_DEFS = {
           texture = ballsTexture,
         }
     },
-    onUse = function() Say('This is a map') end,
+    onUse = function() gStateStack:push(DialogueState('This is a map')) end,
     onBattleUse = function() BattleMessage('This has no use here') end,
   },
   ['potion'] = {

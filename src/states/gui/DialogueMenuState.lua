@@ -4,8 +4,10 @@ function DialogueMenuState:init(text, subMenu, def)
   self.textbox = Textbox(text, {x = 0, y = VIRTUAL_HEIGHT - 64, width = VIRTUAL_WIDTH, height = 64})
   self.canInput = true
 
+  local offsetX = def.offsetX or 0
+  local offsetY = def.offsetY or 0
   self.menu = Menu({
-    x = VIRTUAL_WIDTH - 64, y = VIRTUAL_HEIGHT - 96,
+    x = VIRTUAL_WIDTH - 64 + offsetX, y = VIRTUAL_HEIGHT - 96 + offsetY,
     items = subMenu,
     closeOnSelect = true,
   })
