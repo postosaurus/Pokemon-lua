@@ -7,13 +7,15 @@ function Panel:init(def)
   self.width = def.width or VIRTUAL_WIDTH
   self.height = def.height or 64
 
-  self.color = def.color or {1, 1, 1, 1}
+  self.color = def.color or {1, 1, 1, .89}
   self.borderColor = def.borderColor or {0, 0, 0, 1}
-  self.borderWidth = def.borderWidth or 3
-  self.borderPadding = def.borderPadding or 3
-  self.roundedBorder = def.roundedBorder or 5
+  self.borderWidth = def.borderWidth or 0
+  self.borderPadding = def.borderPadding or 0
+  self.roundedBorder = def.roundedBorder or 10
 
   if def.visible == nil then self.visible = true else self.visible = def.visible end
+
+  return self
 end
 
 function Panel:toggle()
@@ -29,7 +31,7 @@ function Panel:render()
     love.graphics.setColor(0, 0, 0, 1)
     -- love.graphics.rectangle('fill', 0, 0, VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
     shader = SHADER_DEFS['gradient']
-    love.graphics.setShader(shader)
+    -- love.graphics.setShader(shader)
     -- shader:send()
     love.graphics.setColor(self.color)
     love.graphics.rectangle('fill', self.x, self.y, self.width, self.height, self.roundedBorder)

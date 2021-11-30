@@ -84,7 +84,7 @@ gFrames = {
 
 gFonts = {
   ['super-tiny'] = love.graphics.newFont('fonts/font.ttf', 3),
-  ['tiny'] = love.graphics.newFont('fonts/font.ttf', 8), -- a bug here
+  ['tiny'] = love.graphics.newFont('fonts/font.ttf', 6), -- a bug here
   ['small'] = love.graphics.newFont('fonts/font.ttf', 8),
   ['big'] = love.graphics.newFont('fonts/font.ttf', 10),
   ['huge'] = love.graphics.newFont('fonts/font.ttf', 18),
@@ -125,7 +125,9 @@ gFonts = {
   require 'src/gui/ProgressBar'
   require 'src/gui/ScrollBar'
   require 'src/gui/Selection'
+  require 'src/gui/SelectionDisplay'
   require 'src/gui/Menu'
+  require 'src/gui/Layout'
 
   require 'src/entity/Entity'
   require 'src/entity/Player'

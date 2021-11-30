@@ -7,7 +7,7 @@ function StateMachine:init(states)
     ['update'] = function() end,
     ['render'] = function() end
 }
-self.current = self.empty
+  self.current = self.empty
   self.states = states or {}
 end
 

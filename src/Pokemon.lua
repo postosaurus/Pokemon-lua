@@ -17,9 +17,11 @@ function Pokemon:init(def, level)
 
   self.level = level
   self.HP = self.baseHP
+  self.currentHP = self.HP
   self.attack = self.baseAttack
   self.defense = self.baseDefense
   self.speed = self.baseSpeed
+
 
   self:calculeStats()
 

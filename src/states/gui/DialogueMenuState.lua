@@ -5,15 +5,8 @@ function DialogueMenuState:init(text, subMenu, def)
   self.canInput = true
 
 
-  local offsetX = 0
-  local offsetY = 0
-  
-  if def ~= nil then
-    offsetX = def.offsetX or 0
-    offsetY = def.offsetY or 0
-  end
   self.menu = Menu({
-    x = VIRTUAL_WIDTH - 64 + offsetX, y = VIRTUAL_HEIGHT - 96 + offsetY,
+    x = VIRTUAL_WIDTH - 64 + def.offsetX , y = VIRTUAL_HEIGHT - 96 + def.offsetY,
     items = subMenu,
     closeOnSelect = true,
     rows = def.rows, maxRows = def.maxRows,

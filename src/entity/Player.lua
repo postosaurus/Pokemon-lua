@@ -16,3 +16,7 @@ end
 function Player:removeItem(name, amount)
   Inventory.removeItem(self, name, amount)
 end
+
+function Player:getPokemonCount()
+  return Party.getPokemonCount(self)
+end

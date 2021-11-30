@@ -182,10 +182,108 @@ function Selection:render()
 end
 
 function Selection:renderItem(item, x, y)
-  
+
   if self.align then
     love.graphics.printf(item.text, x, y, self.width - self.paddingLeft, self.align)
   else
     love.graphics.print(item.text, x, y)
   end
+end
+
+
+function Selection:renderParty()
+  love.graphics.setColor(self.textColor)
+
+  local displayStart = self.displayStart
+  local displayEnd = displayStart + self.rows - 1
+
+
+  local itemIndex = ((displayStart - 1) * self.columns) + 1
+  local charHeight = self.font:getHeight(self.items[1])
+
+  local x = self.x + self.paddingLeft
+  local y = self.y + self.paddingTop
+  local lineHeight = self.font:getHeight(self.items[1].text) + self.lineSpace
+
+  for i = displayStart, displayEnd do
+    for j = 1, self.columns do
+
+      local item = self.items[itemIndex]
+
+
+      -- if i == #self.items then
+      --   print('Cancel')
+      --   local panel = Panel{x = 10, y = VIRTUAL_HEIGHT - 42, width = 64, height = 32}
+      --
+      --   panel:render()
+      --   love.graphics.print('Cancel', x -64, VIRTUAL_HEIGHT - 42)
+      --   return
+      -- end
+      if item then
+        if item.pokemon then
+          self:renderPartyItem(x, y, item.pokemon, false)
+        elseif item.text then
+          local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = {1, 1, 1, .5}}
+          panel:render()
+          self:renderItem(item, x, y)
+        end
+      else
+        local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = {1, 1, 1, .5}}
+        panel:render()
+      end
+
+
+
+      if i == self.focusY and j == self.focusX and self.cursor then
+        if item then
+          if item.pokemon then
+            self:renderPartyItem(x, y, item.pokemon, true)
+          elseif item.text then
+            local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = {1, 1, 1, .5}}
+            panel:render()
+            self:renderItem(item, x, y)
+          end
+        else
+          local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = {1, 0, 0, .7}}
+          panel:render()
+        end
+      end
+
+
+
+      x = x + self.columnWidth + self.paddingLeft
+      itemIndex = itemIndex + 1
+    end
+
+
+    y = y + 36
+    x = self.x + 2--self.paddingLeft
+  end
+
+  if self.scrollBar then
+    self.scrollBar:render()
+  end
+end
+
+function Selection:renderPartyItem(x, y, pokemon, isSelected)
+  -- local color
+  -- if isSelected then
+  --   panelColor = {1, 0, 0, .7}
+  --   textColor = {0, 0, 0, 1}
+  -- else
+  --   panelColor = {1, 1, 1, .5}
+  --   textColor = {0, 0, 0, 1}
+  -- end
+  --
+  --
+  -- local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = panelColor}
+  -- local healtBar = ProgressBar{x = x + self.width / 2, y = y+20, width = 96, height = 4,
+  --   value = pokemon.currentHP, maxValue = pokemon.HP}
+  -- panel:render()
+  -- love.graphics.setColor(textColor)
+  -- love.graphics.print(pokemon.name, x +5, y+10)
+  -- love.graphics.print('Lv. ' .. tostring(pokemon.level), x + self.width - 54, y +10)
+  -- -- love.graphics:setFont(gFonts['tiny'])
+  -- love.graphics.print(pokemon.currentHP .. '/' .. pokemon.HP .. ' HP', x +5, y+20)
+  -- healtBar:render()
 end

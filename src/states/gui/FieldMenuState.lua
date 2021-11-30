@@ -24,7 +24,7 @@ function FieldMenuState:init(world)
         text = 'TestState',
         onSelect = function()
           gStateStack:pop()
-          gStateStack:push(TestState())
+          gStateStack:push(TestState(self.world))
         end
       },{
         text = 'Go back to \ntitle \nscreen',

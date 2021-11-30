@@ -1,87 +1,66 @@
 TestState = Class {__includes = BaseState}
 
-function TestState:init()
-  self.timer = 0
-  self.r = math.random(1, 255)/255
-  self.g = math.random(1, 255)/255
-  self.b = math.random(1, 255)/255
-  self.power = math.random(20)
-  self.tween = Timer.every(16, function()
-    Timer.tween(8, {
-      [self] = {r = 1, g = 1, b = 1, power = math.random(20)}
-    }):finish(function()
+function TestState:init(world)
+  self.world = world
+  self.layout = Layout()
+  self.layout:contractEven('screen', 3, 3)
+  -- self.layout:splitVert('screen', 'left', 'right', .3, 3)
+  -- self.layout:splitHorz('screen', 'top', 'bottom', .65, 3)
+  self.layout:splitHorz('screen', 'top', 'bottom', .15, 3)
+  self.layout:splitVert('bottom', 'left', 'right', .65, 3)
+  self.layout:splitHorz('right', 'right', 'bottomRight', .8, 3)
+  -- self.layout:splitHorz('left', 'lefttop', 'left', .15, 3)
 
-      -- self.r = 0
-      -- self.g = 0
-      -- self.b = 0
-      -- self.power = 0
-      Timer.tween(8, {
-        [self] = {r = math.random(1, 255)/255, g = math.random(1, 255)/255, b = math.random(1, 255)/255, power = 0}
-      })
-    end)
-  end)
-end
-
-function TestState:enter()
+  -- self.layout:splitHorz('right', 'top', 'middle', .2, 3)
+  --
+  -- self.layout:splitHorz('right', 'tright', 'bright', .7, 3)
+  -- self.layout:splitHorz('tright', 'top', 'bottom', .15, 3)
 
 end
 
 function TestState:handleInput()
   if love.keyboard.wasPressed('q') then
-    gStateStack:pop() -- pop this
+    gStateStack:pop()
   end
 end
 
 function TestState:update(dt)
-  self.timer = self.timer + dt
-  self.tween:update(dt)
-  return false
 end
 
 function TestState:render()
+  self.layout:debugRender()
 
-  local shader = SHADER_DEFS['lights']
-  love.graphics.setShader(shader)
+  love.graphics.setColor(0, 0, 0, 1)
 
-  shader:send("num_lights", 2)
-  shader:send("screen", {VIRTUAL_WIDTH, VIRTUAL_HEIGHT})
-
-
-    lights = {
-
-      -- {position =  {VIRTUAL_WIDTH, VIRTUAL_HEIGHT},
-      -- diffuse = {1.0, 1.0, 0.0},
-      -- power = 15},
-      --
-      -- {position =  {0, 0},
-      -- diffuse = {1.0, 0.0, 0.0},
-      -- power = 10},
-
-      {position =  {VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT /2},
-      diffuse = {self.r, self.g, self.b},
-      power = self.power},
-    }
-
-    shader:send("num_lights", #lights)
-      for i, light in ipairs(lights)do
-         local name = "lights[" .. i-1 .."]"
-         
-         shader:send(name .. ".position", light.position)
-         shader:send(name .. ".diffuse", light.diffuse)
-         shader:send(name .. ".power", light.power)
-      end
-      love.graphics.setColor(1, 1, 1, 1)
-
-  love.graphics.setFont(gFonts['small'])
-  love.graphics.rectangle('fill', 0, 0, VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
-  love.graphics.setShader()
-
-  -- shader = SHADER_DEFS['beautiful-colors']
-  -- love.graphics.setShader(shader)
-  -- shader:send('time', self.timer)
-  -- love.graphics.printf('Postymon', 0, 32, VIRTUAL_WIDTH, 'center')
-  love.graphics.setShader()
+  local x = self.layout.panels['right'].x
+  local y = self.layout.panels['right'].y
+  local width = self.layout.panels['right'].width
+  local height = self.layout.panels['right'].height
+  for i = 1, 6 do
+      love.graphics.print('Item nr. '.. i, x + 5, y + 10)
+    y = y + 16
+  end
 
 
-  love.graphics.setColor(1, 1, 1, 1)
+  local x = self.layout.panels['top'].x
+  local y = self.layout.panels['top'].y
+  local width = self.layout.panels['top'].width
+  local height = self.layout.panels['top'].height
+  love.graphics.printf('TITLE OF THE MENU', x +5, y + 10, width, 'center')
+  -- love.graphics.printf(text, x, y, limit, align, r, sx, sy, ox, oy, kx, ky)
+
+  local x = self.layout.panels['left'].x
+  local y = self.layout.panels['left'].y
+  local width = self.layout.panels['left'].width
+  local height = self.layout.panels['left'].height
+  for i = 0, 4 do
+    local panel = Panel{x = x + 5, y = y +10, width = width -10, height = 32}
+    panel:render()
+    love.graphics.setColor(0, 0, 0, 1)
+    love.graphics.print('Item nr. '.. i, x + 10, y +20)
+    love.graphics.printf('6', x + 10, y +20, width-30, 'right')
+    y = y + 35
+  end
+
+
 end
