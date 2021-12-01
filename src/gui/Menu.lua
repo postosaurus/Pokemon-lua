@@ -20,3 +20,8 @@ function Menu:render()
   self.panel:render()
   self.selection:render()
 end
+
+
+function Menu:getIndex()
+  return self.selection:getIndex()
+end

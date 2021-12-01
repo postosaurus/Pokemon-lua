@@ -1,17 +1,20 @@
 DialogueMenuState = Class{__includes = BaseState}
 
 function DialogueMenuState:init(text, subMenu, def)
-  self.textbox = Textbox(text, {x = 0, y = VIRTUAL_HEIGHT - 64, width = VIRTUAL_WIDTH, height = 64})
+  local choicesPanel = gPanels['bottomRight']
+  choicesPanel.items = subMenu
+  if def then
+    choicesPanel.row = def.rows or 2
+    choicesPanel.maxRows = def.maxRows or 3
+    choicesPanel.closeOnSelect = true
+    choicesPanel.height = def.height
+    choicesPanel.width = def.width
+  end
+
+  self.textbox = Textbox(text, gPanels['bottomLeft'])
   self.canInput = true
 
-
-  self.menu = Menu({
-    x = VIRTUAL_WIDTH - 64 + def.offsetX , y = VIRTUAL_HEIGHT - 96 + def.offsetY,
-    items = subMenu,
-    closeOnSelect = true,
-    rows = def.rows, maxRows = def.maxRows,
-    width = def.width, height = def.height
-  })
+  self.menu = Menu(choicesPanel)
 
   self.onExit = onExit or function() end
 end

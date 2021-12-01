@@ -1,7 +1,7 @@
 DialogueState = Class{__includes = BaseState}
 
 function DialogueState:init(text, onDialogueClose, canInput, def)
-  self.textbox = Textbox(text, {x = 0, y = VIRTUAL_HEIGHT - 64, width = VIRTUAL_WIDTH, height = 64})
+  self.textbox = Textbox(text, gPanels['bottomLeft'])
   if canInput == nil then self.canInput = true else self.canInput = canInput end
 
   self.onDialogueClose = onDialogueClose or function() print("__empty function__") end

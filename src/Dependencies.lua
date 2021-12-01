@@ -90,6 +90,7 @@ gFonts = {
   ['huge'] = love.graphics.newFont('fonts/font.ttf', 18),
 }
 
+
 --  Includes
   require 'src/shader_defs'
   require 'src/pokemon_defs'
@@ -175,3 +176,21 @@ require 'src/character_defs'
 -- require 'src/battle/Opponent'
 -- require 'src/battle/BattleSprite'
 -- require 'src/battle/BattleDisplay'
+
+
+local layout = Layout()
+layout:splitHorz('screen', 'top', 'bottom', .055, 0)
+layout:splitHorz('bottom', 'middle', 'bottom', .8, 0)
+
+
+layout:splitVert('middle', 'left', 'right', .69, 0)
+layout:splitVert('bottom', 'bottomLeft', 'bottomRight', .69, 0)
+
+gLayout = layout
+
+gPanels = {
+  ['middle'] = layout:createPanel('left'),
+  ['fieldMenu'] = layout:createPanel('right'),
+  ['bottomLeft'] = layout:createPanel('bottomLeft'),
+  ['bottomRight'] = layout:createPanel('bottomRight'),
+}

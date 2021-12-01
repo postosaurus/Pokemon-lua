@@ -33,7 +33,7 @@ CHARACTER_DEFS = {
         return function(level, entity)
           npc.direction = npc:oppositeDirection(entity.direction)
           npc:changeAnimation('idle-' .. npc.direction)
-          gStateStack:push(DialogueState('I am Empty'))
+          gStateStack:push(DialogueState('I am Empty,I am EmptyI am EmptyI am EmptyI am EmptyI am EmptyI am EmptyI am Empty'))
           AddItem('potion', 1, entity)
         end
       end

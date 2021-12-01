@@ -191,6 +191,63 @@ function Selection:renderItem(item, x, y)
 end
 
 
+function Selection:renderOnPanels(panels)
+  if panels == nil then
+    return
+  end
+  love.graphics.setColor(self.textColor)
+
+  local displayStart = 1
+  local itemIndex = ((displayStart - 1) * self.columns) + 1
+
+  for i, panel in ipairs(panels) do
+      local panel = panels[itemIndex]
+      x = panel.x
+      y = panel.y
+      width = panel.width
+      height = panel.height
+      panel:setColor({1, 1, 1, 1})
+
+      local item = self.items[itemIndex]
+      print('x :' .. self.focusX .. ' y: ' .. self.focusY)
+      if i == self.focusX + (self.focusY - 1) * self.columns then
+        print(itemIndex)
+        panel:setColor({1, 0, 0, .7})
+
+      end
+
+      panel:render()
+      if item then
+        if item.pokemon then
+
+          love.graphics.setColor(0, 0, 0, 1)
+
+          love.graphics.print(item.pokemon.name, panel.x +5, panel.y + 5)
+          love.graphics.print('Lv. ' .. item.pokemon.level, panel.x +5, panel.y + 15)
+
+          local healtBar = ProgressBar{x = x + 5 / 2, y = y+25, width = panel.width -20, height = 3,
+            value = item.pokemon.currentHP, maxValue = item.pokemon.HP}
+          love.graphics.print(item.pokemon.currentHP .. ' / ' .. item.pokemon.HP, x + 5, y + 36)
+          love.graphics.setFont(gFonts['tiny'])
+          love.graphics.print('Status: ok', x + 5, y + 56)
+          love.graphics.setFont(gFonts['small'])
+           healtBar:render()
+        else
+          love.graphics.setColor(0, 0, 0, 1)
+          love.graphics.print(item.text, panel.x + 10, panel.y +15)
+        end
+      end
+
+
+      itemIndex = itemIndex + 1
+  end
+
+  if self.scrollBar then
+    self.scrollBar:render()
+  end
+
+end
+
 function Selection:renderParty()
   love.graphics.setColor(self.textColor)
 
@@ -223,12 +280,12 @@ function Selection:renderParty()
         if item.pokemon then
           self:renderPartyItem(x, y, item.pokemon, false)
         elseif item.text then
-          local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = {1, 1, 1, .5}}
+          local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = {1, 1, 1, 1}}
           panel:render()
           self:renderItem(item, x, y)
         end
       else
-        local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = {1, 1, 1, .5}}
+        local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = {1, 1, 1, 1}}
         panel:render()
       end
 
@@ -239,12 +296,12 @@ function Selection:renderParty()
           if item.pokemon then
             self:renderPartyItem(x, y, item.pokemon, true)
           elseif item.text then
-            local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = {1, 1, 1, .5}}
+            local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = {1, 1, 1, 1}}
             panel:render()
             self:renderItem(item, x, y)
           end
         else
-          local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = {1, 0, 0, .7}}
+          local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = {1, 0, 0, 1}}
           panel:render()
         end
       end
@@ -266,24 +323,23 @@ function Selection:renderParty()
 end
 
 function Selection:renderPartyItem(x, y, pokemon, isSelected)
-  -- local color
-  -- if isSelected then
-  --   panelColor = {1, 0, 0, .7}
-  --   textColor = {0, 0, 0, 1}
-  -- else
-  --   panelColor = {1, 1, 1, .5}
-  --   textColor = {0, 0, 0, 1}
-  -- end
-  --
-  --
-  -- local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = panelColor}
-  -- local healtBar = ProgressBar{x = x + self.width / 2, y = y+20, width = 96, height = 4,
-  --   value = pokemon.currentHP, maxValue = pokemon.HP}
-  -- panel:render()
-  -- love.graphics.setColor(textColor)
-  -- love.graphics.print(pokemon.name, x +5, y+10)
-  -- love.graphics.print('Lv. ' .. tostring(pokemon.level), x + self.width - 54, y +10)
-  -- -- love.graphics:setFont(gFonts['tiny'])
-  -- love.graphics.print(pokemon.currentHP .. '/' .. pokemon.HP .. ' HP', x +5, y+20)
-  -- healtBar:render()
+  local color
+  if isSelected then
+    panelColor = {1, 0, 0, .7}
+    textColor = {0, 0, 0, 1}
+  else
+    panelColor = {1, 1, 1, 1}
+    textColor = {0, 0, 0, 1}
+  end
+
+
+  local panel = Panel{x = x, y = y , width = self.width - self.paddingLeft, height = 36, color = panelColor}
+
+  panel:render()
+  love.graphics.setColor(textColor)
+  love.graphics.print(pokemon.name, x +5, y+10)
+  love.graphics.print('Lv. ' .. tostring(pokemon.level), x + self.width - 54, y +10)
+  -- love.graphics:setFont(gFonts['tiny'])
+  love.graphics.print(pokemon.currentHP .. '/' .. pokemon.HP .. ' HP', x +5, y+20)
+
 end

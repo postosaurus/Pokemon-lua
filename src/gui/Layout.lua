@@ -47,6 +47,7 @@ function Layout:splitHorz(name, tname, bname, x, spliteSize)
 
   local p1Height = parent.height * (x)
   local p2Height = parent.height * (1-x)
+
   self.panels[tname] = {
     x = parent.x,
     y = parent.y + spliteSize,
@@ -80,5 +81,69 @@ function Layout:splitVert(name, lname, rname, x, spliteSize)
     y = parent.y,
     width = p2Width - spliteSize,
     height = parent.height,
+  }
+end
+
+function Layout:splitThirdHorz(name, tname, mname, bname, spliteSize)
+  local parent  = self.panels[name]
+  self.panels[name] = nil
+
+  local pHeight = parent.height * (.3)
+  local gap = (parent.height - (pHeight*3))
+
+
+
+
+  self.panels[tname] = {
+    x = parent.x,
+    y = parent.y + spliteSize,
+    width = parent.width,
+    height = pHeight - spliteSize
+  }
+
+  self.panels[mname] = {
+    x = parent.x,
+    y = parent.y + spliteSize + pHeight + gap/2,
+    width = parent.width,
+    height = pHeight - spliteSize
+  }
+
+  self.panels[bname] = {
+    x = parent.x,
+    y = parent.y + parent.height - pHeight + spliteSize,
+    width = parent.width,
+    height = pHeight - spliteSize
+  }
+end
+
+function Layout:splitThirdVert(name, lname, mname, rname, spliteSize)
+  local parent  = self.panels[name]
+  self.panels[name] = nil
+
+  local pWidth = parent.width * (.3)
+  local gap = (parent.width - (pWidth*3))
+
+
+
+
+  self.panels[lname] = {
+    x = parent.x  + spliteSize,
+    y = parent.y + spliteSize,
+    width = pWidth - spliteSize,
+    height = parent.height - spliteSize * 2
+  }
+
+  self.panels[mname] = {
+    x = parent.x + pWidth + gap/2,
+    y = parent.y + spliteSize,
+    width = pWidth - spliteSize,
+    height = parent.height - spliteSize * 2
+  }
+
+  self.panels[rname] = {
+    x = parent.x + parent.width - pWidth - spliteSize/2,
+    y = parent.y + spliteSize,
+    width = pWidth - spliteSize,
+    height = parent.height - spliteSize * 2
   }
 end

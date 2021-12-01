@@ -22,8 +22,8 @@ function Panel:toggle()
   self.visible = not self.visible
 end
 
-function Panel:update(dt)
-
+function Panel:setColor(color)
+  self.color = color
 end
 
 function Panel:render()
